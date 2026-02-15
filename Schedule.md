@@ -16,6 +16,7 @@ Sample formalization topics — these vary in length, some are open ended, some 
 * defining semisimple groups and proving some of their basic properties (Isaacs, Finite Group Theory, page 274)
 * minimal normal subgroups of finite groups are abelian or semisimple (Isaacs, Finite Group Theory, Lemma 9.6, page 275)
 * basic structure of the layer (Isaacs, Finite Group Theory, Theorem 9.7, page 275)
+* define extraspecial groups, classify them, study their characters
 * construct one of the 26 sporadic simple groups, prove that it is simple, compute its size, find the conjugacy classes of its involutions
 
 Every participant is expected to have access to a working copy of this repository.
