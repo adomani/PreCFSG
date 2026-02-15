@@ -4,6 +4,8 @@ This is an intensive 1-week workshop for students interested in joining a collab
 
 We will meet every day for 2 hours, from Monday March 16th to Friday March 20th, 2026.
 
+I will also give a presentation on the overall structure of finite simple groups.
+
 Each day, I will give a 30-45 minute presentation on group theory and formalization, followed by a hands-on session where you will work in small groups on various formalization targets.
 
 The lectures will cover the mathematical ideas underlying the formalization targets, as well as ways of converting human-language proofs into Lean code.
