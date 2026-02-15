@@ -1,5 +1,3 @@
-# PreCFSG
-
 ## Workshop on Group theory and formalization
 
 Lectures: Damiano Testa (University of Warwick)
