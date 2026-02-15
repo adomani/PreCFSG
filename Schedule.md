@@ -11,8 +11,8 @@ The lectures will cover the mathematical ideas underlying the formalization tar
 I will also discuss best-practices for collaborative formalizations projects.
 
 Sample formalization topics — these vary in length, some are open ended, some may be in reach within the week, others may involve much more work
-* the Brauer-Fowler theorem (Aschbacher, Finite Simple Groups Theorem 45.5, page 244)
-* the Thompson Odd-order formula (Aschbacher, Finite Simple Groups Theorem 45.6, page 245)
+* the Brauer-Fowler theorem (Aschbacher, Finite Simple Groups, Theorem 45.5, page 244)
+* the Thompson Odd-order formula (Aschbacher, Finite Simple Groups, Theorem 45.6, page 245)
 * defining semisimple groups and proving some of their basic properties (Isaacs, Finite Group Theory, page 274)
 * minimal normal subgroups of finite groups are abelian or semisimple (Isaacs, Finite Group Theory, Lemma 9.6, page 275)
 * basic structure of the layer (Isaacs, Finite Group Theory, Theorem 9.7, page 275)
