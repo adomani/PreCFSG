@@ -12,9 +12,9 @@ I will also discuss best-practices for collaborative formalizations projects.
 
 Sample formalization topics — these vary in length, some are open ended, some may be in reach within the week, others may involve much more work
 * Construct one of the 26 sporadic simple groups, prove that it is simple, compute its size, find the conjugacy classes of its involutions
-* the Brauer-Fowler theorem
-* the Thompson Odd-order formula
-* defining semisimple groups and proving some of their basic properties
+* the Brauer-Fowler theorem (Aschbacher, Finite Simple Groups Theorem 45.5, page 244)
+* the Thompson Odd-order formula (Aschbacher, Finite Simple Groups Theorem 45.6, page 245)
+* defining semisimple groups and proving some of their basic properties (Isaacs, Finite Group Theory, page 274)
 
 Every participant is expected to have access to a working copy of this repository.
 In particular, this means having the Mathlib cache already available on your computer.
