@@ -25,4 +25,4 @@ The actual topics may vary, this is just a sample.
 
 Every participant is expected to have access to a working copy of this repository.
 In particular, this means having the Mathlib cache already available on your computer.
-(E.g., running `lake exe cache get` should be virtually instantaneous.)
+(E.g., opening a file with `import Mathlib.Tactic` should be building any file.)
