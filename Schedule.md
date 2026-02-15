@@ -19,6 +19,8 @@ Sample formalization topics — these vary in length, some are open ended, some 
 * define extraspecial groups, classify them, study their characters
 * construct one of the 26 sporadic simple groups, prove that it is simple, compute its size, find the conjugacy classes of its involutions
 
+The actual topics may vary, this is just a sample.
+
 Every participant is expected to have access to a working copy of this repository.
 In particular, this means having the Mathlib cache already available on your computer.
 (E.g., running `lake exe cache get` should be virtually instantaneous.)
