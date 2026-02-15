@@ -1,4 +1,4 @@
-Formalization
+# Formalizing group theory
 
 This is an intensive 1-week workshop for students interested in joining a collaborative effort to formalize the classification of finite simple groups in Lean.
 
