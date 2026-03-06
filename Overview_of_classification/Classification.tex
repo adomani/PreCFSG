@@ -1,0 +1,539 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+
+% --- Packages and operators
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% --- Macros and operators (standardized)
+\newcommand{\inv}[1]{#1^{-1}}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\im}{im}
+\newcommand{\PGammaL}{\mathrm{P\Gamma L}}
+\newcommand{\Oodd}{\mathbf{O}_{2'}} % largest normal odd-order subgroup
+\newcommand{\aand}{\quad {\textrm{and}} \quad} % largest normal odd-order subgroup
+
+\title[CFSG]{The Classification of the Finite Simple Groups}
+\subtitle{Lecture Series at Tsinghua University}
+\author{Damiano Testa}
+\institute[Warwick]{Mathematics Institute, University of Warwick}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+%------------------------------------------------------------
+\begin{frame}{Introduction and notation}
+
+Throughout this lecture, we will be mostly talking about \emph{groups}.
+
+\bigskip
+
+A \emph{group} is a set $G$ with a binary operation $(\_ \cdot \_)\colon G\times G\to G$ (often written by juxtaposition) such that:
+\begin{itemize}
+  \item \textbf{associativity}: for all $a,b,c\in G$, the identity $(ab)c=a(bc)$ holds;
+  \item \textbf{identity}: there exists $e\in G$ with $ae=ea=a$ for all $a$;
+  \item \textbf{inverses}: for each $a$ there exists $a^{-1}$ with $a^{-1}a=aa^{-1}=e$.
+\end{itemize}
+
+\bigskip
+
+An \emph{involution} is an element $i \in G$ with $i \neq e$ and $i^2=e$.
+
+\smallskip
+
+Involutions play a major role in the classification of finite simple groups.
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Examples}
+
+\begin{itemize}
+  \item
+  $(\mathbb{Z}, +)$ and $(\mathbb{Z} / n \mathbb{Z}, +)$
+
+  In both cases, the identity is $0$ and the inverse of $a$ is $-a$.
+
+  \medskip
+
+  These groups are \emph{abelian}: $a+b=b+a$.
+  \medskip
+  \item
+  Let $A$ be any set (e.g., $A=\{1,2,\dots,n\}$).
+
+  \medskip
+
+  The group $\Sym(A)$ is the group of bijections of $A$ with itself.
+
+  \medskip
+  \item
+  If $R$ is a ring (associative, not necessarily commutative), then the units of $R$ form a group under multiplication.
+
+  \medskip
+
+  E.g., $\GL_n(k)$ is the group of invertible $n \times n$ matrices over a field~$k$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Conjugacy and normal subgroups}
+Let $G$ be a group and $g\in G$.
+The \emph{conjugate} of $x\in G$ by $g$ is $g x \inv{g}$.
+
+\bigskip
+
+The conjugate of a \emph{subgroup} $H$ of $G$ is the subgroup
+\[
+gHg^{-1}= \{gh\inv{g} \mid h \in H\}.
+\]
+
+\medskip
+
+A subgroup $N$ of $G$ is \emph{normal} if it is stable under conjugation by all of $G$:
+\[
+gNg^{-1}= \{gn\inv{g} \mid n \in N\}=N \quad \text{for all } g\in G.
+\]
+
+\medskip
+
+If $N$ is normal in $G$, then there is a quotient group $G/N$ and a quotient map $q \colon G \to G/N$ mapping products to products.
+
+\medskip
+
+The map $q$ is a surjective group homomorphism and the only elements of $G$ mapping to the identity are the elements of $N$.
+
+\bigskip
+
+Informally, $G$ is ``built from'' $N$ and $G/N$.
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{$p$-groups and Sylow subgroups}
+
+A finite group $P$ is a \emph{$p$-group} if $|P|$ is a power of a prime $p$.
+
+\bigskip
+
+Let $G$ be a finite group and let $|G|=p^n m$ with $p\nmid m$.
+
+\bigskip
+
+A subgroup $P\le G$ of order $p^n$ is called a \emph{Sylow $p$-subgroup} of~$G$.
+
+\bigskip
+
+\begin{itemize}
+  \item Sylow $p$-subgroups always exist.
+  \item Every $p$-subgroup of $G$ is contained in a Sylow $p$-subgroup.
+  \item Any two Sylow $p$-subgroups are conjugate in $G$.
+\end{itemize}
+
+\bigskip
+
+For instance, we will see Sylow 2-subgroups in a later slide.
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Solvable groups and simple groups}
+
+\begin{block}{Definition (Solvable group)}
+A group $G$ is \emph{solvable} if there is a finite chain
+\[
+  G_0 = \{e\} \le G_1 \le \cdots \le G_n = G
+\]
+of subgroups, where, for each $i \in \{0, \ldots , n - 1\}$, the group $G_i$ is normal in $G_{i+1}$ and the quotient $G_{i+1}/G_i$ is abelian.
+\end{block}
+
+{\emph{Solvable}} groups are groups whose (recursive) building blocks are abelian.
+
+\bigskip
+
+In some sense, the opposite of solvable is simple.
+
+\bigskip
+
+\begin{block}{Definition (Simple group)}
+  A nontrivial group is {\emph{simple}} if its only normal subgroups are $\{e\}$ and itself.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{The statement of the classification}
+
+What are all the finite simple groups, then?
+
+\bigskip
+
+\begin{block}{The classification of finite simple groups}
+The finite simple groups are:
+
+\medskip
+
+\begin{itemize}
+  \item the cyclic groups of prime order; \hfill (related to $\mathbb{Z}/n\mathbb{Z}$)
+  \item the alternating groups; \hfill (related to $\Sym \{1, \ldots , n\}$)
+  \item the groups of Lie type; \hfill (related to $\GL_n(k)$)
+  \item the 26 sporadic groups. % \hfill (related to $\mathbb{Z}/n\mathbb{Z}$).
+\end{itemize}
+\end{block}
+
+In the proof, these are the \emph{known groups}.
+
+
+\bigskip
+
+The goal is to show that no other finite simple groups exist.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Minimal counterexample}
+Let $G$ a finite simple group of minimum order among the ones that have not yet been classified.
+
+\bigskip
+
+By minimality, every proper subgroup of $G$ has all composition factors among the known simple groups.
+
+\bigskip
+
+The task is to deduce that $G$ itself is known.
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{The Feit--Thompson Theorem}
+A key starting point is the Feit--Thompson (Odd Order) Theorem.
+
+\begin{block}{Theorem (Feit--Thompson, 1963)}
+Every finite group of odd order is solvable.
+\end{block}
+
+\bigskip
+
+We may assume our minimal unknown finite simple group $G$ is not cyclic of prime order.
+
+\bigskip
+
+Hence $G$ is not solvable.
+
+\bigskip
+
+The Feit--Thompson Theorem implies that $|G|$ is even.
+
+\bigskip
+
+In particular, $G$ contains elements of order $2$.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Centralisers of involutions}
+The Feit--Thompson Theorem guarantees that any non-cyclic finite simple group $G$ contains an involution.
+
+\bigskip
+
+This is the starting point of most classification results.
+
+\bigskip
+
+Many steps analyse the structure of \emph{centralisers} of involutions in $G$.
+
+\bigskip
+
+The \emph{centraliser} of an element $x \in G$ is the subgroup
+\[
+C_G(x)=\{g\in G \mid gx=xg\}.
+\]
+
+\bigskip
+
+Centralisers of elements of prime order also receive a lot of attention.
+
+\bigskip
+
+Information about these centralisers often forces $G$ into a short list of possibilities.
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Gorenstein--Walter 1964}
+\begin{block}{Theorem (Gorenstein--Walter, 1964)}
+A finite simple group whose Sylow $2$--subgroups are dihedral is isomorphic to one of:
+\begin{itemize}
+  \item $PSL_2(q)$ with $q$ odd, $q>3$;
+  \item the alternating group $A_7$.
+\end{itemize}
+\end{block}
+
+\bigskip
+
+This is a consequence of a more general characterisation.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Gorenstein--Walter 1964 (general form)}
+
+For a finite group $G$, denote by $\Oodd(G)$ the maximal normal subgroup of $G$ of odd order.
+
+\bigskip
+
+\begin{block}{Theorem (Gorenstein--Walter, 1964)}
+Let $G$ be a finite group whose Sylow $2$-subgroups are dihedral.
+
+\medskip
+
+Then $G/\Oodd(G)$ is isomorphic to:
+
+\smallskip
+
+\begin{itemize}
+  \item a subgroup of $\PGammaL_2(q)$ containing $\PSL_2(q)$, for some odd $q$;
+  \item the alternating group $A_7$;
+  \item a $2$-group.
+\end{itemize}
+\end{block}
+
+In particular, the simple groups with dihedral Sylow $2$-subgroups are precisely $\PSL_2(q)$ (odd $q>3$) and $A_7$.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Observations}
+\begin{enumerate}
+  \item
+  The theorem classifies \emph{all} finite groups with dihedral Sylow $2$-subgroups, not just simple ones.
+
+  This is crucial for inductive and reductive steps.
+  \item
+  The simple groups that occur are exactly $\PSL_2(q)$ (odd $q>3$) and $A_7$
+
+  No other simple groups have dihedral Sylow $2$-subgroups.
+  \item
+  Groups ``close to simple'' are important.
+
+  Here, subgroups of $P\Gamma L_2(q)$ containing $PSL_2(q)$ play a key role.
+  \item
+  The subgroup $\Oodd(G)$ (the largest normal subgroup of odd order) is not constrained by the conclusion; it is solvable (by Feit--Thompson).
+\end{enumerate}
+
+\bigskip
+
+A later result of Alperin--Brauer--Gorenstein treats the cases where the Sylow $2$-subgroups are quasi-dihedral or wreathed.
+
+\end{frame}
+
+
+%------------------------------------------------------------
+\begin{frame}{The known groups (refined)}
+
+It is often helpful to separate Lie-type groups by the characteristic of the defining field:
+\bigskip
+
+\begin{itemize}
+  \item cyclic groups of prime order;
+  \item alternating groups;
+  \item groups of Lie type over fields of \emph{odd characteristic};
+  \item groups of Lie type over fields of \emph{characteristic $2$};
+  \item the 26 sporadic groups.
+\end{itemize}
+
+\bigskip
+
+Characteristic $2$ is separated because involutions behave differently.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Centralisers of involutions in $\SL_3(q)$}
+
+\centering
+\begin{tabular}{c|c}
+\parbox{0.45\textwidth}{\centering \textbf{Odd characteristic ($q$ odd)}} &
+\parbox{0.45\textwidth}{\centering \textbf{Characteristic $2$ ($q=2^f$)}} \\[5pt]
+\hline
+
+\parbox{0.45\textwidth}{\centering Involutions are \textbf{semisimple}} &
+\parbox{0.45\textwidth}{\centering Involutions are \textbf{unipotent}} \\[5pt]
+
+\parbox{0.45\textwidth}{
+\[
+t=\begin{pmatrix}
+-1 & 0 & 0\\
+0 & -1 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\]} &
+\parbox{0.45\textwidth}{
+\[
+u=\begin{pmatrix}
+1 & 1 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\]} \\[25pt]
+%\hline
+
+\parbox{0.45\textwidth}{\centering \textbf{Centraliser}} &
+\parbox{0.45\textwidth}{\centering \textbf{Centraliser}}\\[-10pt]
+\parbox{0.45\textwidth}{
+\[
+C_{\mathrm{SL}_3(q)}(t)\subset
+\begin{pmatrix}
+GL_2(q) & 0\\
+0 & *
+\end{pmatrix}
+\]} &
+\parbox{0.45\textwidth}{
+\[
+C_{\mathrm{SL}_3(q)}(u)\subset
+\begin{pmatrix}
+* & * & *\\
+0 & * & *\\
+0 & 0 & *
+\end{pmatrix}
+\]} \\
+%\hline
+
+\parbox{0.45\textwidth}{\centering \textbf{Reductive (Lie type)}} &
+\parbox{0.45\textwidth}{\centering \textbf{Solvable (Borel type)}} \\
+\end{tabular}
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Families of groups of Lie type}
+Of course, the ``groups of Lie type'' are also not an indivisible block.
+
+\medskip
+
+They naturally subdivide into subclasses.
+
+\bigskip
+
+\begin{itemize}
+  \item \textbf{Classical:} linear, symplectic, even/odd orthogonal
+  \item \textbf{Exceptional (untwisted):} $G_2$, $F_4$, $E_6$, $E_7$, $E_8$
+  \item \textbf{Twisted:} $^{2}A_n$ (unitary), $^{2}D_n$ (including triality $^{3}D_4$), $^{2}E_6$, and the Suzuki $^{2}B_2(2^{2m+1})$, Ree $^{2}G_2(3^{2m+1})$, $^{2}F_4(2^{2m+1})$ families.
+\end{itemize}
+
+\bigskip
+
+In classification arguments, each one must either occur or be ruled out.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{The 26 sporadic groups}
+Each sporadic group comes with distinctive local and global features:
+
+\bigskip
+
+\begin{itemize}
+  \item Sylow subgroups,
+  \item subgroup lattices,
+  \item centralisers of elements,
+  \item geometries,
+\end{itemize}
+and so on.
+
+\bigskip
+
+Every sporadic group arises somewhere in the classification and must be handled individually.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Case analysis and discovery}
+The proof consists of a massive case analysis.
+
+\bigskip
+
+Each case proves a classification theorem under additional hypotheses.
+
+\bigskip
+
+Once all options are covered, the full list of finite simple groups emerges.
+
+\bigskip
+
+Several sporadic groups were discovered through such local analyses.
+
+\bigskip
+
+These relations reveal that the classification is a tightly woven network of interconnected structures, and not a list of isolated objects.
+
+\bigskip
+
+These internal relations are instrumental in the proof.
+
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Computer calculations}
+Besides pen-and-paper arguments, many parts of the classification require substantial computer calculations verifying properties of finite simple groups.
+
+\bigskip
+
+Many of these computations have not been thoroughly verified.
+
+\bigskip
+
+Formally checking these computations is a challenge of a different nature than formalising proofs intended for humans.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Humans, AI, and computation}
+Many parts of the classification are driven by broad organizing principles.
+
+\bigskip
+
+These ideas shape the whole proof and provide insight and direction.
+
+\bigskip
+
+Yet the endgame often reduces to case-specific arguments with limited transferability.
+
+\bigskip
+
+This mixture can possibly be leveraged to parallelise automated formalisation.
+
+\bigskip
+
+Even so, the formalisation of the proof of the classification of finite simple groups remains a daunting mathematical, software engineering and technological challenge.
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Conclusion}
+The CFSG is probably the longest proofs in mathematics.
+
+\bigskip
+
+Formalizing it raises multiple challenges:
+\begin{itemize}
+  \item the statement alone already involves complex mathematical objects (families of groups of Lie type, sporadic groups);
+  \item assembling extensive background results across group theory, representation and character theory, algebraic groups, Lie theory, finite geometry, homological algebra, etc.;
+  \item managing substantial computational input alongside human-readable arguments,
+\end{itemize}
+to name a few.
+
+\bigskip
+
+This does not contemplate the possibility that a gap is found and a fix is needed!
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}
+\begin{center}
+  {\huge Thank you!}\\[30pt]
+  {\huge Questions?}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------------------
+\end{document}
