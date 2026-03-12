@@ -149,6 +149,32 @@ Formulating the ``correct'' lemmas and the useful abstractions is still more of 
 It is essential for sustainable code-base growth that leads to CFSG.
 \end{frame}
 
+\begin{frame}{Forward vs Backward Reasoning}
+Common mathematical reasoning
+\begin{itemize}
+  \item starts from the hypotheses
+  \item uses them iteratively to accumulate further usable facts
+  \item concludes once enough facts are present.
+\end{itemize}
+
+\bigskip
+
+Direct translation of this proof style to Lean leads to ``walls of \cverb{have}s''.
+
+\bigskip
+
+This is valid code, but
+
+\medskip
+
+\begin{itemize}
+  \item it pollutes the context with single-use assumptions
+  \item it hides proof structure
+  \item it hinders isolation of common reasoning
+  \item it conceals internal relations
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Walls of \cverb{have}}
 Forward reasoning via many \cverb{have}s produces:
 \medskip
