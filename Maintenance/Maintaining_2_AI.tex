@@ -33,59 +33,40 @@
 \end{frame}
 
 % =====================================================
-\section{Short Proofs and Lemmas}
+\section{AI Formalisation Successes}
 % =====================================================
 
-\begin{frame}{Short Proofs}
-Short proofs improve:
-\medskip
-\begin{itemize}
-  \item readability
-  \item review time
-  \item maintainability
-  \item conceptual clarity
-\end{itemize}
-\medskip
-Long monolithic proofs accumulate accidental complexity.
-\end{frame}
+\begin{frame}{Progression}
+When AIs became widespread, they were terrible at maths.
 
-\begin{frame}{Atomic Lemmas}
-Breaking arguments into lemmas provides:
-\medskip
-\begin{itemize}
-  \item reusable API-level statements
-  \item recurring subgoals that guide structure
-  \item clearer opportunities for abstraction
-  \item smaller, local proof obligations
-\end{itemize}
-This is essential for long-term maintenance.
-\end{frame}
+\bigskip
 
-\begin{frame}{Walls of \cverb{have}}
-Forward reasoning via many \cverb{have}s produces:
-\medskip
-\begin{itemize}
-  \item opaque clutter
-  \item loss of goal structure
-  \item brittle, linear dependency chains
-  \item hidden lemma candidates
-\end{itemize}
-Backward reasoning exposes structure; walls of \cverb{have} conceal it.
-\end{frame}
+Last summer, four AI companies won gold medals at the IMO.
 
-\begin{frame}{Backward Reasoning}
-Lean's tactic framework is built around:
-\medskip
-\begin{itemize}
-  \item goal transformation (\cverb{apply}, \cverb{refine})
-  \item structural decomposition (\cverb{intro}, \cverb{cases})
-  \item clean subgoal generation
-\end{itemize}
-This naturally yields maintainable, idiomatic proofs.
+\bigskip
+
+Now, they are approaching university-level questions.
+
+\bigskip
+
+With varying amount of supervision and feedback, they are getting better at converting informal proofs into formal ones.
+
+\bigskip
+
+So far, these have been small, incremental advances over pre-existing foundations.
 \end{frame}
 
 \begin{frame}{AI Succeeds Because Mathlib Exists}
-Modern AI proof agents succeed partly because Mathlib:
+AI companies have clearly developed amazing automation and reasoning tools.
+
+Here, I want to focus on what I think is the ``human bottleneck''.
+
+Modern AI proof agents succeed thanks to
+\begin{itemize}
+  \item the carefully curated code-base provided by Mathlib
+  \item the proof scaffolding bridging the implicit informal proofs and the formalised target
+  \item the constant supervision and redirection towards the intended target
+\end{itemize}
 
 \medskip
 
@@ -136,6 +117,54 @@ The only data point is that Mathlib-level quality enables autoformalisation.
 \bigskip
 
 Conclusion: scaling requires Mathlib-level quality throughout.
+\end{frame}
+
+\begin{frame}{Short Proofs}
+Short proofs improve:
+\medskip
+\begin{itemize}
+  \item readability
+  \item review time
+  \item maintainability
+  \item conceptual clarity
+\end{itemize}
+\medskip
+Long monolithic proofs accumulate accidental complexity.
+\end{frame}
+
+\begin{frame}{Atomic Lemmas}
+Breaking arguments into lemmas provides:
+\medskip
+\begin{itemize}
+  \item reusable API-level statements
+  \item recurring subgoals that guide structure
+  \item clearer opportunities for abstraction
+  \item smaller, local proof obligations
+\end{itemize}
+This is essential for long-term maintenance.
+\end{frame}
+
+\begin{frame}{Walls of \cverb{have}}
+Forward reasoning via many \cverb{have}s produces:
+\medskip
+\begin{itemize}
+  \item opaque clutter
+  \item loss of goal structure
+  \item brittle, linear dependency chains
+  \item hidden lemma candidates
+\end{itemize}
+Backward reasoning exposes structure; walls of \cverb{have} conceal it.
+\end{frame}
+
+\begin{frame}{Backward Reasoning}
+Lean's tactic framework is built around:
+\medskip
+\begin{itemize}
+  \item goal transformation (\cverb{apply}, \cverb{refine})
+  \item structural decomposition (\cverb{intro}, \cverb{cases})
+  \item clean subgoal generation
+\end{itemize}
+This naturally yields maintainable, idiomatic proofs.
 \end{frame}
 
 \begin{frame}{On Maintainability (after Avigad)}
@@ -223,7 +252,7 @@ Partial protection: external checkers that replay the environment
 
 See the \href{https://arena.lean-lang.org/}{Lean Kernel Arena} for more information.
 \end{frame}
-
+\end{document}
 % --- Slide ---
 \begin{frame}{Disclaimer on the Lean Kernel}
 There is no known soundness issue in the Lean kernel.
