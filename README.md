@@ -13,7 +13,7 @@ Dates: March 16-20, 2026
 * 2 hours each day -- 30-45 minutes of lecture, followed by group work
 * 1 hour lecture on "Overview of the Classification of Finite Simple Groups"
 
-### Schedule (tentative)
+### Schedule
 
 #### Monday
 * examples of informal vs formal definitions, with main focus on group theory
