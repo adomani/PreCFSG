@@ -119,25 +119,6 @@ In a setup where there is an expectation that humans will not be able to check a
 \section{Reviewing AI Contributions}
 % =====================================================
 
-% --- Automatic Reviews ---
-\begin{frame}{Automatic Reviews}
-Guardrails for AI-authored PRs:
-
-\medskip
-
-\begin{itemize}
-  \item check definitions against the blueprint
-  \medskip
-  \item ensure idiomatic constructs where possible
-  \medskip
-  \item adhere to project APIs
-  \medskip
-  \item automated lints against deviance from established guidelines
-  \medskip
-  \item expose all meta-programming to be really sure it is not a liability
-\end{itemize}
-\end{frame}
-
 % --- Slide ---
 \begin{frame}{AI Reviewing AI}
 \begin{columns}[T,totalwidth=\textwidth]
@@ -232,33 +213,6 @@ The ``default'' Lean settings prefer usability and flexibility over adversarial 
 This ``good faith'' principle can (and does) get violated by AI agents.
 \end{frame}
 
-% --- Slide ---
-\begin{frame}{Generic Automation}
-Automate:
-
-\medskip
-
-\begin{itemize}
-  \item triage of PRs to the appropriate reviewers
-  \smallskip
-  \item task assignment, depending on contributors' strengths
-  \smallskip
-  \item iterate quickly on easy issues (typos, rewriting)
-\end{itemize}
-
-\medskip
-
-Use priority queues matching blueprint dependency structure.
-
-\bigskip
-
-These suggestions apply mostly to human development.
-
-\bigskip
-
-However, I expect that some form of the above workflow applies to AI development as well.
-\end{frame}
-
 % =====================================================
 \section{Lean-Specific Automation}
 % =====================================================
@@ -330,13 +284,18 @@ Developing new concepts benefits from predictability:
 
 % --- Slide ---
 \begin{frame}{Helping Automation}
+Train agents to add \cverb{simp}, \cverb{aesop}, \cverb{grind} tags appropriately.
+
+\bigskip
+
 Some ``discovery'' tactics such as
-\begin{itemize}
-  \item \cverb{try?}
-  \item \cverb{exact?}
-  \item \cverb{apply?}
-  \item \cverb{rw?}
-\end{itemize}
+
+\begin{center}
+\begin{tabular}{l@{\hspace{30pt}}l@{\hspace{30pt}}l@{\hspace{30pt}}l}
+  $\bullet$ \cverb{try?} & $\bullet$ \cverb{exact?} &
+  $\bullet$ \cverb{apply?} & $\bullet$ \cverb{rw?}
+\end{tabular}
+\end{center}
 
 are more performant with smaller environments.
 
@@ -357,98 +316,9 @@ Environment reduction can be achieved enforcing
 \end{itemize}
 \end{frame}
 
-% --- Slide ---
-\begin{frame}{Helping Automation}
-
-In a similar spirit, encouraging small, well-scoped files reduces conflicts.
-
-\bigskip
-
-Adhering to naming conventions helps formalisers use API lemmas.
-
-\bigskip
-
-Consistent module docs and docstrings certainly help humans and may also aid AI agents.
-
-\bigskip
-
-Extend dynamically the scope of \cverb{simp}, \cverb{aesop}, \cverb{grind}, by training agents to tag lemmas appropriately.
-\end{frame}
-
-% --- Slide ---
-\begin{frame}{Developing Custom Tactics}
-Where recurring patterns appear:
-
-\medskip
-
-\begin{itemize}
-  \item create domain-specific \cverb{simp}-sets
-  \medskip
-  \item expand \cverb{aesop} and \cverb{grind} when appropriate
-  \medskip
-  \item create domain-specific tactics
-\end{itemize}
-
-\bigskip
-
-Two or three well-written tactics can save hundreds of lines.
-\end{frame}
-
 % =====================================================
 \section{Computation \& Blueprinting}
 % =====================================================
-
-% --- Slide ---
-\begin{frame}{Bird's Eye View for Integrated Development}
-\begin{columns}[T,totalwidth=\textwidth]
-  \begin{column}{0.45\textwidth}
-Provide:
-
-\medskip
-
-\begin{itemize}
-  \item dashboards
-  \medskip
-  \item dependency graphs
-  \medskip
-  \item coverage of key results
-  \medskip
-  \item ``blocked by'' relationships
-\end{itemize}
-  \end{column}
-  \begin{column}{0.6\textwidth}
-\begin{tikzpicture}[
-  >=Stealth,
-  node distance=8mm,
-  every node/.style={draw, rounded corners, align=center, inner sep=2pt, font=\scriptsize}
-]
-\node (A) {Lemma A};
-\node (B) [below left=8mm and 10mm of A] {Lemma B};
-\node (C) [below right=8mm and 10mm of A] {Lemma C};
-\node (D) [below=20mm of A] {Lemma D};
-\node (E) [below=6mm of D] {Theorem E};
-
-\draw[->] (A) -- (B);
-\draw[->] (A) -- (C);
-\draw[->] (B) -- (D);
-\draw[->] (C) -- (D);
-\draw[->] (D) -- (E);
-\end{tikzpicture}
-  \end{column}
-\end{columns}
-
-\bigskip
-
-Helps parallelisation and spotting blockers.
-
-\bigskip
-
-Generally, any form of visual feedback is very useful for humans.
-
-\bigskip
-
-(Possibly not for AIs, but it is a good way to track progress.)
-\end{frame}
 
 % --- Slide ---
 \begin{frame}{Proofs by Computation}
