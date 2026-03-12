@@ -33,6 +33,128 @@
 \end{frame}
 
 % =====================================================
+\section{Short Proofs and Lemmas}
+% =====================================================
+
+\begin{frame}{Short Proofs}
+Short proofs improve:
+\medskip
+\begin{itemize}
+  \item readability
+  \item review time
+  \item maintainability
+  \item conceptual clarity
+\end{itemize}
+\medskip
+Long monolithic proofs accumulate accidental complexity.
+\end{frame}
+
+\begin{frame}{Atomic Lemmas}
+Breaking arguments into lemmas provides:
+\medskip
+\begin{itemize}
+  \item reusable API-level statements
+  \item recurring subgoals that guide structure
+  \item clearer opportunities for abstraction
+  \item smaller, local proof obligations
+\end{itemize}
+This is essential for long-term maintenance.
+\end{frame}
+
+\begin{frame}{Walls of \cverb{have}}
+Forward reasoning via many \cverb{have}s produces:
+\medskip
+\begin{itemize}
+  \item opaque clutter
+  \item loss of goal structure
+  \item brittle, linear dependency chains
+  \item hidden lemma candidates
+\end{itemize}
+Backward reasoning exposes structure; walls of \cverb{have} conceal it.
+\end{frame}
+
+\begin{frame}{Backward Reasoning}
+Lean's tactic framework is built around:
+\medskip
+\begin{itemize}
+  \item goal transformation (\cverb{apply}, \cverb{refine})
+  \item structural decomposition (\cverb{intro}, \cverb{cases})
+  \item clean subgoal generation
+\end{itemize}
+This naturally yields maintainable, idiomatic proofs.
+\end{frame}
+
+\begin{frame}{AI Succeeds Because Mathlib Exists}
+Modern AI proof agents succeed partly because Mathlib:
+
+\medskip
+
+\begin{itemize}
+  \item provides thousands of general, well-conceived lemmas
+  \item offers predictable and curated APIs
+  \item encodes human-designed abstractions AI can retrieve
+\end{itemize}
+
+\bigskip
+
+AI can take a few steps ahead exploiting these strong foundations.
+
+\bigskip
+
+At least for now!
+\end{frame}
+
+\begin{frame}{Current AI Proofs Do Not Scale}
+AI-generated proofs tend to be:
+\medskip
+\begin{itemize}
+  \item verbose
+  \item narrowly optimised
+  \item hard to maintain
+  \item hard to reuse
+\end{itemize}
+Such code cannot scale to CFSG-level formalisation.
+\end{frame}
+
+\begin{frame}{Mathlib vs.\ CFSG: Scale}
+Approximate size comparison:
+\medskip
+\begin{itemize}
+  \item Mathlib contains about 5,000--10,000 pages of informal mathematics
+  \vspace{3pt}
+  \item the CFSG spans about 10,000--20,000 pages
+\end{itemize}
+
+\bigskip
+
+Autoformalisation will have to build on top of autoformalised results.
+
+\bigskip
+
+The only data point is that Mathlib-level quality enables autoformalisation.
+
+\bigskip
+
+Conclusion: scaling requires Mathlib-level quality throughout.
+\end{frame}
+
+\begin{frame}{On Maintainability (after Avigad)}
+Public essays and talks by Avigad emphasise:
+
+\medskip
+
+\begin{itemize}
+  \item AI proofs are often verbose and narrowly targeted
+  \item maintainability must remain a primary goal
+  \item incentives should promote refactoring, not credit accumulation
+\end{itemize}
+
+\bigskip
+
+This matches concerns raised widely regarding AI-driven formalisation.
+\end{frame}
+
+% =====================================================
 \section{AI Failure Modes}
 % =====================================================
 
@@ -507,128 +629,6 @@ Possible layered AI approach:
 \end{center}
   \end{column}
 \end{columns}
-\end{frame}
-
-% =====================================================
-\section{Short Proofs and Lemmas}
-% =====================================================
-
-\begin{frame}{Short Proofs}
-Short proofs improve:
-\medskip
-\begin{itemize}
-  \item readability
-  \item review time
-  \item maintainability
-  \item conceptual clarity
-\end{itemize}
-\medskip
-Long monolithic proofs accumulate accidental complexity.
-\end{frame}
-
-\begin{frame}{Atomic Lemmas}
-Breaking arguments into lemmas provides:
-\medskip
-\begin{itemize}
-  \item reusable API-level statements
-  \item recurring subgoals that guide structure
-  \item clearer opportunities for abstraction
-  \item smaller, local proof obligations
-\end{itemize}
-This is essential for long-term maintenance.
-\end{frame}
-
-\begin{frame}{Walls of \cverb{have}}
-Forward reasoning via many \cverb{have}s produces:
-\medskip
-\begin{itemize}
-  \item opaque clutter
-  \item loss of goal structure
-  \item brittle, linear dependency chains
-  \item hidden lemma candidates
-\end{itemize}
-Backward reasoning exposes structure; walls of \cverb{have} conceal it.
-\end{frame}
-
-\begin{frame}{Backward Reasoning}
-Lean's tactic framework is built around:
-\medskip
-\begin{itemize}
-  \item goal transformation (\cverb{apply}, \cverb{refine})
-  \item structural decomposition (\cverb{intro}, \cverb{cases})
-  \item clean subgoal generation
-\end{itemize}
-This naturally yields maintainable, idiomatic proofs.
-\end{frame}
-
-\begin{frame}{AI Succeeds Because Mathlib Exists}
-Modern AI proof agents succeed partly because Mathlib:
-
-\medskip
-
-\begin{itemize}
-  \item provides thousands of general, well-conceived lemmas
-  \item offers predictable and curated APIs
-  \item encodes human-designed abstractions AI can retrieve
-\end{itemize}
-
-\bigskip
-
-AI can take a few steps ahead exploiting these strong foundations.
-
-\bigskip
-
-At least for now!
-\end{frame}
-
-\begin{frame}{Current AI Proofs Do Not Scale}
-AI-generated proofs tend to be:
-\medskip
-\begin{itemize}
-  \item verbose
-  \item narrowly optimised
-  \item hard to maintain
-  \item hard to reuse
-\end{itemize}
-Such code cannot scale to CFSG-level formalisation.
-\end{frame}
-
-\begin{frame}{Mathlib vs.\ CFSG: Scale}
-Approximate size comparison:
-\medskip
-\begin{itemize}
-  \item Mathlib contains about 5,000--10,000 pages of informal mathematics
-  \vspace{3pt}
-  \item the CFSG spans about 10,000--20,000 pages
-\end{itemize}
-
-\bigskip
-
-Autoformalisation will have to build on top of autoformalised results.
-
-\bigskip
-
-The only data point is that Mathlib-level quality enables autoformalisation.
-
-\bigskip
-
-Conclusion: scaling requires Mathlib-level quality throughout.
-\end{frame}
-
-\begin{frame}{On Maintainability (after Avigad)}
-Public essays and talks by Avigad emphasise:
-
-\medskip
-
-\begin{itemize}
-  \item AI proofs are often verbose and narrowly targeted
-  \item maintainability must remain a primary goal
-  \item incentives should promote refactoring, not credit accumulation
-\end{itemize}
-
-\bigskip
-
-This matches concerns raised widely regarding AI-driven formalisation.
 \end{frame}
 
 % --- Thanks! ---
