@@ -149,7 +149,7 @@ Formulating the ``correct'' lemmas and the useful abstractions is still more of 
 Such lemmas are essential for sustainable development that leads to CFSG.
 \end{frame}
 
-\begin{frame}{Forward vs Backward Reasoning}
+\begin{frame}{Forward Reasoning}
 Common mathematical reasoning
 \begin{itemize}
   \item starts from the hypotheses
@@ -187,27 +187,31 @@ This is valid code, but
 \end{columns}
 \end{frame}
 
-\begin{frame}{Walls of \cverb{have}}
-Forward reasoning via many \cverb{have}s produces:
-\medskip
-\begin{itemize}
-  \item opaque clutter
-  \item loss of goal structure
-  \item brittle, linear dependency chains
-  \item hidden lemma candidates
-\end{itemize}
-Backward reasoning exposes structure; walls of \cverb{have} conceal it.
-\end{frame}
-
 \begin{frame}{Backward Reasoning}
-Lean's tactic framework is built around:
-\medskip
-\begin{itemize}
-  \item goal transformation (\cverb{apply}, \cverb{refine})
-  \item structural decomposition (\cverb{intro}, \cverb{cases})
-  \item clean subgoal generation
-\end{itemize}
+Lean's tactic framework allows for more efficient and clear reasoning.
+
+\bigskip
+
+Tactics such as \cverb{apply} and \cverb{refine} isolate intermediate goals that are sufficient to prove the goal.
+
+\bigskip
+
+They do not clutter the local context, but rather create a tree-like dependency graph for the proof.
+
+\bigskip
+
+Each separate goal can then be attacked independently.
+
+\bigskip
+
+The corresponding informal analogue is arguing that ``to prove what we want, it suffices to show $\ldots$''.
+
+\bigskip
+
 This naturally yields maintainable, idiomatic proofs.
+
+\bigskip
+It also identifies clear candidate for API lemmas, since each subtree is a separate target.
 \end{frame}
 
 % =====================================================
@@ -279,7 +283,7 @@ Partial protection: external checkers that replay the environment
 
 See the \href{https://arena.lean-lang.org/}{Lean Kernel Arena} for more information.
 \end{frame}
-\end{document}
+
 % --- Slide ---
 \begin{frame}{Disclaimer on the Lean Kernel}
 There is no known soundness issue in the Lean kernel.
