@@ -37,7 +37,7 @@
 % =====================================================
 
 \begin{frame}{Progression}
-When AIs became widespread, they were terrible at maths.
+When modern AIs first became widespread, they were terrible at maths.
 
 \bigskip
 
@@ -49,11 +49,11 @@ Now, they are approaching university-level questions.
 
 \bigskip
 
-With varying amount of supervision and feedback, they are getting better at converting informal proofs into formal ones.
+With varying amounts of supervision and feedback, they are getting better at converting informal proofs into formal ones.
 
 \bigskip
 
-So far, these have been small, incremental advances over pre-existing foundations.
+So far, these have been small, incremental advances built on pre-existing foundations.
 \end{frame}
 
 \begin{frame}{AI Successes and the Human Bottleneck}
@@ -61,7 +61,7 @@ AI companies have developed amazing automation and reasoning tools.
 
 \bigskip
 
-Here, I want to focus on what I think is the ``human bottleneck''.
+Here, I want to focus on what I see as the ``human bottleneck''.
 
 \bigskip
 
@@ -77,7 +77,7 @@ Modern AI proof agents succeed thanks to
 
 \bigskip
 
-AI takes a few steps ahead exploiting these strong foundations.
+AI takes a few steps ahead by exploiting these strong foundations.
 \end{frame}
 
 \begin{frame}{AI proofs}
@@ -94,7 +94,7 @@ The recent autoformalisation successes produced
 
 \bigskip
 
-This is accumulation of technical debt.
+This is an accumulation of technical debt.
 
 \bigskip
 
@@ -106,7 +106,7 @@ The next step should be producing valuable, reusable code.
 \end{frame}
 
 \begin{frame}{Mathlib vs CFSG}
-Approximate size comparison (very rough estimates!):
+Approximate size comparison (very rough estimates):
 
 \medskip
 
@@ -138,7 +138,7 @@ Short proofs are a \emph{symptom} of good quality code.
 
 \bigskip
 
-Curated lemma statements provide (auto)formalisers with ``the right lemma at the right time''.
+Curated lemma statements provide (auto)formalisers with the ``right lemma at the right time''.
 
 \bigskip
 
@@ -163,14 +163,14 @@ Common mathematical reasoning
 
 \bigskip
 
-Direct translation of this proof style to Lean leads to ``walls of \cverb{have}s''.
+Direct translation of this proof style to Lean leads to walls of \cverb{have}s.
 
 \bigskip
 
 \begin{columns}[T]
   \begin{column}{0.45\textwidth}
 
-This is valid code, but
+This is perfectly valid code, but
 
 \medskip
 
@@ -215,7 +215,7 @@ The corresponding informal analogue is arguing that ``to prove what we want, it 
 This naturally yields maintainable, idiomatic proofs.
 
 \bigskip
-It also identifies clear candidate for API lemmas, since each subtree is a separate target.
+It also identifies clear candidates for API lemmas, since each subtree is a separate target.
 \end{frame}
 
 % =====================================================
@@ -251,7 +251,7 @@ AI agents tend to be less aware of context and expectations.
 \bigskip
 
 \begin{block}{Key Point}
-Alignment with intended goals should be automatically enforced.
+Alignment with intended goals should be automatically enforced wherever possible.
 \end{block}
 
 \end{frame}
@@ -294,7 +294,7 @@ There is no known soundness issue in the Lean kernel.
 
 \bigskip
 
-But Lean metaprogramming can circumvent checks and create illusions of progress.
+But Lean metaprogramming can circumvent checks and create the illusion of progress.
 
 \bigskip
 
@@ -405,7 +405,7 @@ This ``good faith'' principle can (and does) get violated by AI agents.
 
 % --- Slide ---
 \begin{frame}{Lean-Specific Automation}
-Figure out automatically reusable generalisations
+Figure out reusable generalisations automatically
 \begin{itemize}
   \item identify common rewrites
   \medskip
@@ -420,7 +420,7 @@ Consider custom tactics — but AI-generated tactics need strict boundaries and 
 
 \bigskip
 
-Bad tactics are a huge liability.
+Bad tactics are a major liability.
 
 \bigskip
 
@@ -449,7 +449,7 @@ And they should also retain them in later iterations!
 
 \bigskip
 
-Developing new concepts benefits from predictability:
+Developing new concepts benefits from predictability in:
 
 \smallskip
 
@@ -530,7 +530,7 @@ Mathlib has limited infrastructure for this currently.
 
 \bigskip
 
-The classification of finite simple groups will benefit from trusted computations.
+The classification of finite simple groups will significantly benefit from trusted computations.
   \end{column}
   \begin{column}{0.42\textwidth}
 \begin{center}
@@ -559,7 +559,7 @@ The blueprint is a bridge between the original proof and the final target.
 
 \bigskip
 
-It should probably be part of
+It should ideally be part of
 
 \medskip
 
@@ -623,7 +623,7 @@ The ``informalisation'' process that goes from a maths paper intended for humans
 
 \bigskip
 
-Dedicated agents that provide details, fill in gaps, suggest intermediate goals, state results in a ``formalisation friendly'' are immensely valuable.
+Dedicated agents that provide details, fill in gaps, suggest intermediate goals, state results in a ``formalisation-friendly'' way are immensely valuable.
 
 \bigskip
 
