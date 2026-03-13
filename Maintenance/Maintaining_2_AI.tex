@@ -163,12 +163,12 @@ Direct translation of this proof style to Lean leads to ``walls of \cverb{have}s
 
 \bigskip
 
+\begin{columns}[T]
+  \begin{column}{0.45\textwidth}
+
 This is valid code, but
 
 \medskip
-
-\begin{columns}[T]  % <-- added
-  \begin{column}{0.45\textwidth}  % <-- width chosen to preserve your layout
 
 \begin{itemize}
   \item it pollutes the context with single-use assumptions
@@ -179,12 +179,12 @@ This is valid code, but
 
   \end{column}
 
-  \begin{column}{0.62\textwidth}  % <-- added column with your picture
+  \begin{column}{0.55\textwidth}
     \begin{center}
       \includegraphics[width=\textwidth]{Screenshot from 2026-03-12 23-57-05.png}
     \end{center}
   \end{column}
-\end{columns}  % <-- added
+\end{columns}
 \end{frame}
 
 \begin{frame}{Walls of \cverb{have}}
