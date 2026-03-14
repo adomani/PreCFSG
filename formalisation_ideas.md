@@ -23,6 +23,9 @@ These vary in length, some are open ended, some may be in reach within the week,
 * Show that the inclusion `(F(G))' ≤ F(G')` holds.
   Does it hold also for not necessarily finite groups?
 * Define extraspecial groups, classify them, study their characters
+
+## Open-ended and exploratory
+
 * Construct one of the 26 sporadic simple groups, prove that it is simple, compute its size, find the conjugacy classes of its involutions
 
 ## Long-term major goals
