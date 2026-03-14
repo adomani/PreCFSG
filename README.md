@@ -1,4 +1,4 @@
-## Workshop on Group theory and formalization in Lean
+## Workshop on Group theory and formalisation in Lean
 
 Lectures: Damiano Testa (University of Warwick)
 
@@ -10,9 +10,9 @@ Dates: March 16-20, 2026
 
 We will meet every day for 2 hours, from Monday March 16th to Friday March 20th, 2026.
 
-Each day, I will give a 30-45 minute presentation on group theory, formalization and maintenance of large formalisation libraries.
+Each day, I will give a 30-45 minute presentation on group theory, formalisation and maintenance of large formalisation libraries.
 
-After that, there will be hands-on sessions where the participants will work in small groups on various formalization targets.
+After that, there will be hands-on sessions where the participants will work in small groups on various formalisation targets.
 
 #### Mon-Fri 5-7pm
 
@@ -49,24 +49,15 @@ After that, there will be hands-on sessions where the participants will work in 
 This is an intensive 1-week workshop for students interested in joining a collaborative effort to formalize the classification of finite simple groups in Lean.
 
 The lectures will cover
-* mathematical ideas underlying the formalization targets
+* mathematical ideas underlying the formalisation targets
 * ways of converting human-language proofs into Lean code
-* best-practices for collaborative formalizations projects
+* best-practices for collaborative formalisations projects
 * a presentation on the overall structure of finite simple groups
 
-#### Sample formalization topics
+Here is a [list of formalisation ideas](formalisation_ideas.md).
+These have different lengths and scopes: some are well-suited for being completed during the workshop, others are open-ended and long-term.
 
-These vary in length, some are open ended, some may be in reach within the week, others may involve much more work.
-
-* The Brauer-Fowler theorem (Aschbacher, Finite Simple Groups, Theorem 45.5, page 244)
-* The Thompson Odd-order formula (Aschbacher, Finite Simple Groups, Theorem 45.6, page 245)
-* Defining semisimple groups and proving some of their basic properties (Isaacs, Finite Group Theory, page 274)
-* Minimal normal subgroups of finite groups are abelian or semisimple (Isaacs, Finite Group Theory, Lemma 9.6, page 275)
-* Basic structure of the layer (Isaacs, Finite Group Theory, Theorem 9.7, page 275)
-* Define extraspecial groups, classify them, study their characters
-* Construct one of the 26 sporadic simple groups, prove that it is simple, compute its size, find the conjugacy classes of its involutions
-
-The actual topics may vary, this is just a sample.
+### Prerequisites
 
 Every participant is expected to have access to a working copy of this repository.
 In particular, this means having the Mathlib cache already available on your computer.
