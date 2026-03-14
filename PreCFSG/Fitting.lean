@@ -1,22 +1,6 @@
 module
 
---public import CFSG.EGoal
---public import CFSG.Basic
---public import CFSG.Characteristic
---public import CFSG.Notation
---public import CFSG.Normalizer
-
-
---public import CFSG.Normal
---public import CFSG.NilpotentAdd
---public import CFSG.Pointwise
---public import CFSG.UpperCentralSeries
-public import Mathlib.Order.ConditionallyCompleteLattice.Indexed
-public import Mathlib.Algebra.Group.Subgroup.Basic
-public import Mathlib.GroupTheory.QuotientGroup.Defs
 public import Mathlib.GroupTheory.Nilpotent
-
-public import Mathlib.GroupTheory.Commutator.Basic
 
 /-! # The Fitting subgroup of a group
 
