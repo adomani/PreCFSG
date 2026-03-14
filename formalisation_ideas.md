@@ -24,3 +24,11 @@ These vary in length, some are open ended, some may be in reach within the week,
   Does it hold also for not necessarily finite groups?
 * Define extraspecial groups, classify them, study their characters
 * Construct one of the 26 sporadic simple groups, prove that it is simple, compute its size, find the conjugacy classes of its involutions
+
+## Long-term major goals
+
+* Construct the Leech lattice and its automorphism group.
+  This unlocks the definition of some sporadic simple groups and proving some of their properties.
+* Define algebraic groups.
+* Classify algebraic groups.
+* Define groups of Lie type (to *state* the classification of finite simple groups!)
