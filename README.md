@@ -1,4 +1,4 @@
-## Workshop on Group theory and formalization in Lean
+## Workshop on Group theory and formalisation in Lean
 
 Lectures: Damiano Testa (University of Warwick)
 
@@ -10,9 +10,9 @@ Dates: March 16-20, 2026
 
 We will meet every day for 2 hours, from Monday March 16th to Friday March 20th, 2026.
 
-Each day, I will give a 30-45 minute presentation on group theory, formalization and maintenance of large formalisation libraries.
+Each day, I will give a 30-45 minute presentation on group theory, formalisation and maintenance of large formalisation libraries.
 
-After that, there will be hands-on sessions where the participants will work in small groups on various formalization targets.
+After that, there will be hands-on sessions where the participants will work in small groups on various formalisation targets.
 
 #### Mon-Fri 5-7pm
 
@@ -49,9 +49,9 @@ After that, there will be hands-on sessions where the participants will work in 
 This is an intensive 1-week workshop for students interested in joining a collaborative effort to formalize the classification of finite simple groups in Lean.
 
 The lectures will cover
-* mathematical ideas underlying the formalization targets
+* mathematical ideas underlying the formalisation targets
 * ways of converting human-language proofs into Lean code
-* best-practices for collaborative formalizations projects
+* best-practices for collaborative formalisations projects
 * a presentation on the overall structure of finite simple groups
 
 Here is a [list of formalisation ideas](formalisation_ideas.md).
