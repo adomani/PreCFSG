@@ -20,7 +20,7 @@ These vary in length, some are open ended, some may be in reach within the week,
      [Suggestion: it is probably a good idea to define the "`z`" in this item explicitly and build some API around it.]
   1. If `n` is even and `z` is the involution in `<xy>` then `xz` is conjugate to `x` in `D` if and only if `n = 0 mod 4`.
 * The Fitting subgroup of a (binary/arbitrary) product is the product of the Fitting subgroups
-* Show that the inclusion `(F(G))' ≤ F(G')` holds.
+* Show that the inclusion `F(G)' ≤ F(G')` holds.
   Does it hold also for not necessarily finite groups?
 * Define extraspecial groups, classify them, study their characters
 
