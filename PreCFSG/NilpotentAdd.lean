@@ -1,7 +1,23 @@
 module
 
 public import Mathlib.GroupTheory.Nilpotent
---public import CFSG.Commutator
+
+/-!
+This file contains a minimally polished proof of Fitting's Theorem.
+Below there are more details on the actual proof.
+
+This file serves several purposes.
+
+1. This is probably the human analogue of the kinds of non-idiomatic files that AIs generate,
+   although I hope that the lemma selection is "better" than what an LLM would generate.
+   Maybe, aiming for such files with AI agents is more accessible and a good stepping stone.
+2. Polishing this proof and making it more "`mathlib` style" is probably a simpler goal than
+   doing it from scratch.
+   In turn, this could be a useful training model for AIs.
+3. The argument itself is a thin wrapper around a result on non-associative, non-unitals semirings.
+   This means that proving results about group theory can go via the API for rings.
+   Exploring such connections is something that would be awesome to automate!
+-/
 
 /-!
 # Fitting's Theorem (nilpotent normal subgroups)
