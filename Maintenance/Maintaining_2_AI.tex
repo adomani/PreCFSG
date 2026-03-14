@@ -33,6 +33,192 @@
 \end{frame}
 
 % =====================================================
+\section{AI Formalisation Successes}
+% =====================================================
+
+\begin{frame}{Progression}
+When modern AIs first became widespread, they were terrible at maths.
+
+\bigskip
+
+Last summer, four AI companies won gold medals at the IMO.
+
+\bigskip
+
+Now, they are approaching university-level questions.
+
+\bigskip
+
+With varying amounts of supervision and feedback, they are getting better at converting informal proofs into formal ones.
+
+\bigskip
+
+So far, these have been small, incremental advances built on pre-existing foundations.
+\end{frame}
+
+\begin{frame}{AI Successes and the Human Bottleneck}
+AI companies have developed amazing automation and reasoning tools.
+
+\bigskip
+
+Here, I want to focus on what I see as the ``human bottleneck''.
+
+\bigskip
+
+Modern AI proof agents succeed thanks to
+
+\medskip
+
+\begin{itemize}
+  \item the carefully curated code-base provided by Mathlib
+  \item the proof scaffolding bridging the implicit informal proofs and the formalised target
+  \item the constant supervision and redirection towards the intended target
+\end{itemize}
+
+\bigskip
+
+AI takes a few steps ahead by exploiting these strong foundations.
+\end{frame}
+
+\begin{frame}{AI proofs}
+The recent autoformalisation successes produced
+
+\medskip
+
+\begin{itemize}
+  \item verbose proofs
+  \item narrowly targeted statements
+  \item poorly maintainable code
+  \item essentially unusable end results
+\end{itemize}
+
+\bigskip
+
+This is an accumulation of technical debt.
+
+\bigskip
+
+Such code cannot scale to CFSG-level formalisation.
+
+\bigskip
+
+The next step should be producing valuable, reusable code.
+\end{frame}
+
+\begin{frame}{Mathlib vs CFSG}
+Approximate size comparison (very rough estimates):
+
+\medskip
+
+\begin{itemize}
+  \item Mathlib contains about 5,000--10,000 pages of informal mathematics
+  \vspace{3pt}
+  \item the CFSG spans about 10,000--20,000 pages
+\end{itemize}
+
+\bigskip
+
+Autoformalisation will have to build on top of autoformalised results.
+
+\bigskip
+
+The only data point is that Mathlib-level quality enables autoformalisation.
+
+\bigskip
+
+Conclusion: scaling requires Mathlib-level quality throughout.
+\end{frame}
+
+\begin{frame}{Atomic Lemmas and Short Proofs}
+Atomic lemmas are essential for building usable code.
+
+\bigskip
+
+Short proofs are a \emph{symptom} of good quality code.
+
+\bigskip
+
+Curated lemma statements provide (auto)formalisers with the ``right lemma at the right time''.
+
+\bigskip
+
+Mathlib requires such polished lemmas, hence proofs can be short.
+
+\bigskip
+
+Formulating ``correct'' lemmas and useful abstractions is still more of an art than an automated process.
+
+\bigskip
+
+Such lemmas are essential for sustainable development that leads to CFSG.
+\end{frame}
+
+\begin{frame}{Forward Reasoning}
+Common mathematical reasoning
+\begin{itemize}
+  \item starts from the hypotheses
+  \item uses them iteratively to accumulate further usable facts
+  \item concludes once enough facts are present.
+\end{itemize}
+
+\bigskip
+
+Direct translation of this proof style to Lean leads to ``walls of \cverb{have}s''.
+
+\bigskip
+
+\begin{columns}[T]
+  \begin{column}{0.45\textwidth}
+
+This is valid code, but
+
+\medskip
+
+\begin{itemize}
+  \item it pollutes the context with single-use assumptions
+  \item it hides proof structure
+  \item it hinders the identification of reusable lemmas
+  \item it conceals internal relations
+\end{itemize}
+
+  \end{column}
+
+  \begin{column}{0.55\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{Screenshot from 2026-03-12 23-57-05.png}
+    \end{center}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Backward Reasoning}
+Lean's tactic framework allows for more efficient and clear reasoning.
+
+\bigskip
+
+Tactics such as \cverb{apply} and \cverb{refine} isolate intermediate goals that are sufficient to prove the goal.
+
+\bigskip
+
+They do not clutter the local context, but rather create a tree-like dependency graph for the proof.
+
+\bigskip
+
+Each separate goal can then be attacked independently.
+
+\bigskip
+
+The corresponding informal analogue is arguing that ``to prove what we want, it suffices to show $\ldots$''.
+
+\bigskip
+
+This naturally yields maintainable, idiomatic proofs.
+
+\bigskip
+It identifies candidates for API lemmas, since each subtree is a separate target.
+\end{frame}
+
+% =====================================================
 \section{AI Failure Modes}
 % =====================================================
 
@@ -73,6 +259,9 @@ Alignment with intended goals should be automatically enforced.
 % --- Slide: Exploits ---
 \begin{frame}{Exploits}
 AI might exploit Lean's flexible metaprogramming to
+
+\medskip
+
 \begin{itemize}
   \item bypass kernel checking
   \smallskip
@@ -85,17 +274,22 @@ AI might exploit Lean's flexible metaprogramming to
 
 Partial protection: external checkers that replay the environment
 
-\medskip
-
+\begin{center}
+\begin{minipage}[t]{0.28\linewidth}
 \begin{itemize}
   \item \href{https://github.com/fgdorais/lean4lean}{lean4lean}
   \smallskip
   \item \href{https://github.com/leanprover/leanchecker}{leanchecker}
-  \smallskip
+\end{itemize}
+\end{minipage}\hspace{30pt}
+\begin{minipage}[t]{0.28\linewidth}
+\begin{itemize}
   \item \href{https://github.com/nanoda/}{nanoda}
   \smallskip
   \item \href{https://github.com/leanprover-community/lean-comparator}{comparator}
 \end{itemize}
+\end{minipage}
+\end{center}
 
 \medskip
 
@@ -108,7 +302,7 @@ There is no known soundness issue in the Lean kernel.
 
 \bigskip
 
-But Lean metaprogramming can circumvent checks and create illusions of progress.
+But Lean metaprogramming can circumvent checks and create the illusion of progress.
 
 \bigskip
 
@@ -118,25 +312,6 @@ In a setup where there is an expectation that humans will not be able to check a
 % =====================================================
 \section{Reviewing AI Contributions}
 % =====================================================
-
-% --- Automatic Reviews ---
-\begin{frame}{Automatic Reviews}
-Guardrails for AI-authored PRs:
-
-\medskip
-
-\begin{itemize}
-  \item check definitions against the blueprint
-  \medskip
-  \item ensure idiomatic constructs where possible
-  \medskip
-  \item adhere to project APIs
-  \medskip
-  \item automated lints against deviance from established guidelines
-  \medskip
-  \item expose all meta-programming to be really sure it is not a liability
-\end{itemize}
-\end{frame}
 
 % --- Slide ---
 \begin{frame}{AI Reviewing AI}
@@ -232,40 +407,13 @@ The ``default'' Lean settings prefer usability and flexibility over adversarial 
 This ``good faith'' principle can (and does) get violated by AI agents.
 \end{frame}
 
-% --- Slide ---
-\begin{frame}{Generic Automation}
-Automate:
-
-\medskip
-
-\begin{itemize}
-  \item triage of PRs to the appropriate reviewers
-  \smallskip
-  \item task assignment, depending on contributors' strengths
-  \smallskip
-  \item iterate quickly on easy issues (typos, rewriting)
-\end{itemize}
-
-\medskip
-
-Use priority queues matching blueprint dependency structure.
-
-\bigskip
-
-These suggestions apply mostly to human development.
-
-\bigskip
-
-However, I expect that some form of the above workflow applies to AI development as well.
-\end{frame}
-
 % =====================================================
 \section{Lean-Specific Automation}
 % =====================================================
 
 % --- Slide ---
 \begin{frame}{Lean-Specific Automation}
-Figure out automatically reusable generalisations
+Figure out reusable generalisations automatically
 \begin{itemize}
   \item identify common rewrites
   \medskip
@@ -280,7 +428,7 @@ Consider custom tactics — but AI-generated tactics need strict boundaries and 
 
 \bigskip
 
-Bad tactics are a huge liability.
+Bad tactics are a major liability.
 
 \bigskip
 
@@ -309,7 +457,7 @@ And they should also retain them in later iterations!
 
 \bigskip
 
-Developing new concepts benefits from predictability:
+Developing new concepts benefits from predictability in:
 
 \smallskip
 
@@ -330,13 +478,18 @@ Developing new concepts benefits from predictability:
 
 % --- Slide ---
 \begin{frame}{Helping Automation}
+Train agents to add \cverb{simp}, \cverb{aesop}, \cverb{grind} tags appropriately.
+
+\bigskip
+
 Some ``discovery'' tactics such as
-\begin{itemize}
-  \item \cverb{try?}
-  \item \cverb{exact?}
-  \item \cverb{apply?}
-  \item \cverb{rw?}
-\end{itemize}
+
+\begin{center}
+\begin{tabular}{l@{\hspace{30pt}}l@{\hspace{30pt}}l@{\hspace{30pt}}l}
+  $\bullet$ \cverb{try?} & $\bullet$ \cverb{exact?} &
+  $\bullet$ \cverb{apply?} & $\bullet$ \cverb{rw?}
+\end{tabular}
+\end{center}
 
 are more performant with smaller environments.
 
@@ -357,98 +510,9 @@ Environment reduction can be achieved enforcing
 \end{itemize}
 \end{frame}
 
-% --- Slide ---
-\begin{frame}{Helping Automation}
-
-In a similar spirit, encouraging small, well-scoped files reduces conflicts.
-
-\bigskip
-
-Adhering to naming conventions helps formalisers use API lemmas.
-
-\bigskip
-
-Consistent module docs and docstrings certainly help humans and may also aid AI agents.
-
-\bigskip
-
-Extend dynamically the scope of \cverb{simp}, \cverb{aesop}, \cverb{grind}, by training agents to tag lemmas appropriately.
-\end{frame}
-
-% --- Slide ---
-\begin{frame}{Developing Custom Tactics}
-Where recurring patterns appear:
-
-\medskip
-
-\begin{itemize}
-  \item create domain-specific \cverb{simp}-sets
-  \medskip
-  \item expand \cverb{aesop} and \cverb{grind} when appropriate
-  \medskip
-  \item create domain-specific tactics
-\end{itemize}
-
-\bigskip
-
-Two or three well-written tactics can save hundreds of lines.
-\end{frame}
-
 % =====================================================
 \section{Computation \& Blueprinting}
 % =====================================================
-
-% --- Slide ---
-\begin{frame}{Bird's Eye View for Integrated Development}
-\begin{columns}[T,totalwidth=\textwidth]
-  \begin{column}{0.45\textwidth}
-Provide:
-
-\medskip
-
-\begin{itemize}
-  \item dashboards
-  \medskip
-  \item dependency graphs
-  \medskip
-  \item coverage of key results
-  \medskip
-  \item ``blocked by'' relationships
-\end{itemize}
-  \end{column}
-  \begin{column}{0.6\textwidth}
-\begin{tikzpicture}[
-  >=Stealth,
-  node distance=8mm,
-  every node/.style={draw, rounded corners, align=center, inner sep=2pt, font=\scriptsize}
-]
-\node (A) {Lemma A};
-\node (B) [below left=8mm and 10mm of A] {Lemma B};
-\node (C) [below right=8mm and 10mm of A] {Lemma C};
-\node (D) [below=20mm of A] {Lemma D};
-\node (E) [below=6mm of D] {Theorem E};
-
-\draw[->] (A) -- (B);
-\draw[->] (A) -- (C);
-\draw[->] (B) -- (D);
-\draw[->] (C) -- (D);
-\draw[->] (D) -- (E);
-\end{tikzpicture}
-  \end{column}
-\end{columns}
-
-\bigskip
-
-Helps parallelisation and spotting blockers.
-
-\bigskip
-
-Generally, any form of visual feedback is very useful for humans.
-
-\bigskip
-
-(Possibly not for AIs, but it is a good way to track progress.)
-\end{frame}
 
 % --- Slide ---
 \begin{frame}{Proofs by Computation}
@@ -474,7 +538,7 @@ Mathlib has limited infrastructure for this currently.
 
 \bigskip
 
-The classification of finite simple groups will benefit from trusted computations.
+The classification of finite simple groups will significantly benefit from trusted computations.
   \end{column}
   \begin{column}{0.42\textwidth}
 \begin{center}
@@ -503,7 +567,7 @@ The blueprint is a bridge between the original proof and the final target.
 
 \bigskip
 
-It should probably be part of
+It should ideally be part of
 
 \medskip
 
@@ -567,7 +631,7 @@ The ``informalisation'' process that goes from a maths paper intended for humans
 
 \bigskip
 
-Dedicated agents that provide details, fill in gaps, suggest intermediate goals, state results in a ``formalisation friendly'' are immensely valuable.
+Dedicated agents that provide details, fill in gaps, suggest intermediate goals, state ``formalisation-friendly'' results are immensely valuable.
 
 \bigskip
 
