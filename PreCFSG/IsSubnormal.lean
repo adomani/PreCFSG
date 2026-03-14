@@ -2,6 +2,12 @@ module
 
 public import Mathlib.GroupTheory.IsSubnormal
 
+@[expose] public section
+
+namespace Private
+open Subgroup
+variable {G : Type*} [Group G] {H K : Subgroup G}
+
 /-!
 # Subnormal subgroups
 
@@ -19,4 +25,89 @@ The emphasis in textbooks is:
 * Each step involves highly dependent constraints
   ("dependent" in the "dependent type theory" sense).
 
+Let me expand on what are the issues with the 3 items above.
+
+### Finiteness
+
+`Finite`ness is often hard to "get right".
+
+Its formalised form is probably easier to computer scientists than to mathematicians.
+
+For instance, a common strategy to prove a result about a finite group `G` is by induction on `|G|`.
+
+However, many beginners fid it hard to set the problem up and then actually concluding the inductive proof.
+
+It is certainly possible and definitely not an "advanced" technique, but it does require getting to grips with finiteness and its dependent type nature.
+
+### Mentioning all the subgroups
+
+In informal mathematics, it is "cheap" to simply give names to all the subgroups and require their normality.
+
+Humans are very good at handling such constraints.
+
+However, there are many choices for formulating such notion and they all have some amount of awkwardness.
+
+Using a (dependent) function from `Fin n → Subgroup G` makes it inconvenient to concatenate two such chains.
+
+Using a function `ℕ → Subgroup G` is marginally better, but still it is not easy to "chop" off the tail/head of a chain.
+
+### Dependent typing
+
+Overall, many of the issues above are created by the dependent nature of the definition.
+
+Also, the existential definition hides an intrinsically recursive nature of the notion.
+
+Making this recursive approach explicit simplifies working with the concept substantially.
+
+## `mathlib`'s definition: `IsSubnormal`
+
+`mathlib` uses an `inductive` formulation that is equivalent to the existential version above.
+
+This avoids explicitly mentioning the length or the terms of the chain.
+
+Rather, it relies on `structural` recursion.
+Let's take a look at the definition.
 -/
+#check Subgroup.IsSubnormal
+
+inductive IsSubnormal : Subgroup G → Prop where
+  /-- The whole subgroup `G` is subnormal in itself. -/
+  | top : IsSubnormal (⊤ : Subgroup G)
+  /-- A subgroup `H` is subnormal if there is a subnormal subgroup `K` containing `H` that is
+  subnormal itself and such that `H` is normal in `K`. -/
+  | step : ∀ H K, (h_le : H ≤ K) → (hSubn : IsSubnormal K) → (hN : (H.subgroupOf K).Normal) →
+    IsSubnormal H
+
+/-!
+Thus there are two ways to prove that a subgroup `H` of a group `G` is subnormal:
+* either the subgroup `H` is the full group `G`
+* or there is an intermediate *subnormal* subgroup `K` such that
+  * `H` is contained in `K` and
+  * `H` is normal in `K`.
+
+The "chain" disappears: it is replaced by a nested sequence of inductive calls to subnormality itself.
+
+In particular, the length of the chain is how "deep" our nested sequence of calls is.
+
+An informal rule-of-thumb for why this is probably a "better" definition is that it is less dependent.
+
+Moreover, there is only one dependent data type, namely `K`, everything else is in `Prop`.
+
+Having experimented with more literal translations of the informal notion, I have no doubt that the current version is better suited for progress.
+
+At the same time, note that there is also a proof of the equivalence of the inductive version with a literal one:
+-/
+#check IsSubnormal.isSubnormal_iff
+/-!
+Technically, once the equivalence of the two definition is in place, which one is the "real" definition is no longer a big issue.
+
+## Transitivity
+
+Taking a step back, the pattern above can be re-used for general *transitive closures* of relations.
+
+In this specific case, it did not seem worthwhile to go via transitivity.
+
+Nevertheless, it is possible that, in the future, such a refactor will be desirable.
+-/
+
+end Private
