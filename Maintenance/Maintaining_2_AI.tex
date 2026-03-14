@@ -259,6 +259,9 @@ Alignment with intended goals should be automatically enforced.
 % --- Slide: Exploits ---
 \begin{frame}{Exploits}
 AI might exploit Lean's flexible metaprogramming to
+
+\medskip
+
 \begin{itemize}
   \item bypass kernel checking
   \smallskip
@@ -271,17 +274,22 @@ AI might exploit Lean's flexible metaprogramming to
 
 Partial protection: external checkers that replay the environment
 
-\medskip
-
+\begin{center}
+\begin{minipage}[t]{0.28\linewidth}
 \begin{itemize}
   \item \href{https://github.com/fgdorais/lean4lean}{lean4lean}
   \smallskip
   \item \href{https://github.com/leanprover/leanchecker}{leanchecker}
-  \smallskip
+\end{itemize}
+\end{minipage}\hspace{30pt}
+\begin{minipage}[t]{0.28\linewidth}
+\begin{itemize}
   \item \href{https://github.com/nanoda/}{nanoda}
   \smallskip
   \item \href{https://github.com/leanprover-community/lean-comparator}{comparator}
 \end{itemize}
+\end{minipage}
+\end{center}
 
 \medskip
 
