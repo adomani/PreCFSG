@@ -8,6 +8,7 @@ namespace Private
 open Subgroup
 variable {G : Type*} [Group G] {H K : Subgroup G}
 
+set_option linter.style.longLine false
 /-!
 # Lemmas and definitions in mathematics
 
