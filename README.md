@@ -1,4 +1,4 @@
-## Workshop on Group theory and formalisation in Lean
+## Workshop on Group Theory and Formalisation in Lean
 
 Lectures: Damiano Testa (University of Warwick)
 
