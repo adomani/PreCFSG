@@ -93,6 +93,12 @@ These vary in length, some are open ended, some may be in reach within the week,
 
 * Construct one of the 26 sporadic simple groups, prove that it is simple, compute its size, find the conjugacy classes of its involutions
 
+  For instance, formalising the Mathieu groups should be easily accessible.
+
+  The constructions of the sporadic groups often have a very combinatorial component.
+  `mathlib` has little support for such arguments.
+  This means that their formalisation will involve larger explorations of the available alternatives and probably some trial and error.
+
 ## Long-term major goals
 
 * Construct the Leech lattice and its automorphism group.
