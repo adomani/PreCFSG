@@ -137,7 +137,9 @@ lemma Characteristic.sSup_ite_of_iff_map (P : Set (Subgroup G))
   (hp : ∀ φ : G ≃* G, ∀ H, H ∈ P ↔ (map φ H) ∈ P) :
     Characteristic (sSup P) := by
   classical
-  convert Characteristic.iSup_ite_of_iff_map (· ∈ P) hp
+  suffices sSup P = ⨆ H, if H ∈ P then H else ⊥ by
+    rw [this]
+    exact Characteristic.iSup_ite_of_iff_map _ hp
   simp [iSup_ite, sSup_eq_iSup]
 
 lemma lowerCentralSeries_two_eq_top_top_top :
