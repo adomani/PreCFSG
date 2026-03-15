@@ -348,26 +348,10 @@ lemma centralizer_le_fitting [IsSolvable G] :
     · exact mem_centralizer_iff.mpr aC
     · exact mem_centralizer_iff.mpr bC
 
--- A general lemma
-/--
-If the centraliser of a subgroup `H` is contained in `H` itself, then the centraliser is in fact
-the whole centre of `H`.
--/
-lemma centralizer_eq_center_of_le {H : Subgroup G} (h : centralizer H ≤ H) :
-    centralizer H = Z(H).map H.subtype := by
-  refine le_antisymm ?_ ?_
-  · rw [SetLike.le_def]
-    intros x hx
-    simp only [mem_map, subtype_apply, Subtype.exists, exists_and_right, exists_eq_right]
-    use Set.mem_of_mem_of_subset hx h
-    rw [mem_center_iff]
-    aesop
-  · intro x hx
-    simp [mem_center_iff] at hx
-    aesop
-
 theorem centralizer_eq_center_of_isSolvable [IsSolvable G] :
-    centralizer F(G).carrier = Z(F(G)).map F(G).subtype :=
-  centralizer_eq_center_of_le centralizer_le_fitting
+    centralizer F(G).carrier = Z(F(G)).map F(G).subtype := by
+  simp [← centralizer_inf_self_eq_center]
+  have := centralizer_le_fitting (G := G)
+  aesop
 
 end Subgroup.Fitting
