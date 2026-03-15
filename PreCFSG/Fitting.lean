@@ -52,7 +52,7 @@ lemma exists_isMulCommutative_nontrivial [Nontrivial G] [IsSolvable G] :
   have : ∃ n, derivedSeries G n = ⊥ := (isSolvable_def G).mp ‹_›
   let n : ℕ := Nat.find this
   obtain h0 | hn := eq_or_ne n 0
-  · aesop
+  · simp_all only [Nat.find_eq_zero, derivedSeries_zero, top_ne_bot, n]
   have fn := Nat.find_min (m := n - 1) this (Nat.sub_one_lt hn)
   use n -1
   refine ⟨?_, (nontrivial_iff_ne_bot _).mpr fn⟩
@@ -65,6 +65,27 @@ lemma exists_isMulCommutative_nontrivial [Nontrivial G] [IsSolvable G] :
     exact commutator_mem_commutator ha hb
   rw [this] at hcomm
   simpa only [MulMemClass.mk_mul_mk, Subtype.mk.injEq, ← commutatorElement_eq_one_iff_mul_comm]
+
+/-!
+# Formalisation idea
+
+The statement involves an existential. Often, this is a symptom of missing API.
+
+Indeed, from the *proof*, we extract that the stated `n` is *exactly* the predecessor of the
+smallest natural number `n` such that `derivedSeries G n = ⊥`.
+
+In the informal context, this number is sometimes called the `derived length` of the group `G`.
+
+It is possible that, for future usage, introducing the concept of `derived length` and using it
+extensively could be beneficial.
+
+Note that this would be a definition parallel to the `nilpotencyClass`, which *does* appear
+in `mathlib`.
+-/
+#check Group.nilpotencyClass
+/-!
+If AIs could automatically sync these notions that would be awesome!
+-/
 
 /-- The notation `Z(G)` stands for the center of the group `G`. -/
 scoped notation "Z(" G ")" => center G
