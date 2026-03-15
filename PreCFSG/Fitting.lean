@@ -157,9 +157,8 @@ lemma lowerCentralSeries_eq_two_of_commutator_le_centralizer {H : Subgroup G}
     lowerCentralSeries H 2 = ⊥ := by
   rw [lowerCentralSeries_two_eq_top_top_top, commutator_eq_bot_iff_le_centralizer]
   refine map_subtype_le_map_subtype.mp ?_
-  change map H.subtype (_root_.commutator ↥H) ≤ _
-  rw [map_subtype_commutator]
-  rw [@SetLike.le_def] at h ⊢
+  rw [← _root_.commutator_def, map_subtype_commutator]
+  rw [SetLike.le_def] at h ⊢
   simp only [coe_top, mem_map, subtype_apply, Subtype.exists, exists_and_right,
     exists_eq_right] at h ⊢
   intro x hx
