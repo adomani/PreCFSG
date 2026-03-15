@@ -235,19 +235,12 @@ lemma centralizer_inf_self_eq_center (H : Subgroup G) :
       MulMemClass.mk_mul_mk, Subtype.mk.injEq, exists_and_left, exists_prop, exists_eq_right_right,
       mem_inf, mem_centralizer_iff, SetLike.mem_coe, implies_true, and_self]
 
-lemma isMulComm_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsNilpotent H := by
-  rw [nilpotent_iff_lowerCentralSeries]
-  use 1
-  rw [lowerCentralSeries_one, commutator_eq_bot_iff_center_eq_top]
-  rw [commutator_eq_bot_iff_le_centralizer, le_centralizer_iff_isMulCommutative] at hH
-  exact CommGroup.center_eq_top
+lemma isMulComm_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsMulCommutative H := by
+  exact isMulCommutative_iff_commutator_eq_bot.mpr hH
 
-lemma nilpotent_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsNilpotent H := by
-  rw [nilpotent_iff_lowerCentralSeries]
-  use 1
-  rw [lowerCentralSeries_one, commutator_eq_bot_iff_center_eq_top]
-  rw [commutator_eq_bot_iff_le_centralizer, le_centralizer_iff_isMulCommutative] at hH
-  exact CommGroup.center_eq_top
+lemma nilpotent_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsNilpotent H :=
+  have : IsMulCommutative H → IsNilpotent H := fun _ ↦ CommGroup.isNilpotent
+  this (isMulComm_of_comm_eq_bot hH)
 
 /-- A nontrivial solvable group contains a nontrivial characteristic subgroup that is nilpotent. -/
 lemma characteristic_nilpotent [Nontrivial G] [IsSolvable G] :
