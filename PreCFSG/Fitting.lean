@@ -193,10 +193,10 @@ theorem eq_bot_of_IsSimple_of_not_IsCyclic [IsSimpleGroup G] (hC : ¬ IsCyclic G
   solve_by_elim
 
 /-!
-In a solvable group, the centralizer of the Fitting subgroup is equal to the centre of the
+In a solvable group, the centraliser of the Fitting subgroup is equal to the centre of the
 Fitting subgroup.
 
-Ref: https://groupprops.subwiki.org/wiki/Solvable_implies_Fitting_subgroup_is_self-centralizing
+Ref: https://groupprops.subwiki.org/wiki/Solvable_implies_Fitting_subgroup_is_self-centralising
 -/
 
 lemma centralizer_inf_self_eq_center (H : Subgroup G) :
