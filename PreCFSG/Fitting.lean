@@ -285,6 +285,8 @@ lemma inf_centralizer_self_le_inf_centralizer :
       centralizer F(G) ⊓ centralizer (centralizer F(G) : Subgroup G) :=
   le_inf (fun z ↦ by aesop) (fun s ⟨hsF, hsC⟩ t ht ↦ (SemiconjBy.eq (ht s hsF)).symm)
 
+-- Refactoring opportunity: this lemma can certainly be reorganised using smaller steps and better
+-- structure.
 lemma centralizer_le_fitting [IsSolvable G] :
     centralizer F(G) ≤ F(G) := by
   -- The intersection of `F(G)` and its centraliser is normal in the centraliser.
@@ -308,10 +310,6 @@ lemma centralizer_le_fitting [IsSolvable G] :
     refine le_fitting_of_normal_of_isNilpotent ?_ ?_
     · exact ConjAct.normal_of_characteristic_of_normal
     · exact CommGroup.isNilpotent
-  have Bn_le_ZC : Bn ≤ centralizer C := by
-    trans F(G) ⊓ centralizer F(G)
-    · exact Bn_le_F_C
-    · exact inf_centralizer_self_le_inf_centralizer.trans (inf_le_of_right_le le_rfl)
   cases n with
   | zero =>
     simp only [derivedSeries_zero] at hBn_nilp
@@ -325,7 +323,9 @@ lemma centralizer_le_fitting [IsSolvable G] :
     have BB_le_ZC : ⁅B, B⁆ ≤ centralizer C := by
       unfold B
       rw [← map_commutator, ← derivedSeries_succ]
-      exact Bn_le_ZC
+      trans F(G) ⊓ centralizer F(G)
+      · exact Bn_le_F_C
+      · exact inf_centralizer_self_le_inf_centralizer.trans (inf_le_of_right_le le_rfl)
     have B_le_C : B ≤ C := map_subtype_le _
     have BB_le_ZB : ⁅B, B⁆ ≤ centralizer B := BB_le_ZC.trans (centralizer_le B_le_C)
     have B_nilp : IsNilpotent B := isNilpotent_of_commutator_le_centralizer BB_le_ZB
