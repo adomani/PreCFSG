@@ -216,7 +216,7 @@ theorem eq_bot_of_IsSimpleGroup_of_not_IsNilpotent [IsSimpleGroup G] (hC : ¬ Is
 theorem eq_bot_of_IsSimple_of_not_IsCyclic [IsSimpleGroup G] (hC : ¬ IsCyclic G) :
     F(G) = ⊥ := by
   apply eq_bot_of_IsSimpleGroup_of_not_IsNilpotent
-  solve_by_elim
+  solve_by_elim -- a "manual" proof is `exact fun h ↦ hC inferInstance`
 
 /-!
 In a solvable group, the centraliser of the Fitting subgroup is equal to the centre of the
