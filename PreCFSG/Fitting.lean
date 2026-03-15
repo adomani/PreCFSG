@@ -36,6 +36,7 @@ Here we prove some basic facts:
 variable {G} [Group G]
 namespace Subgroup
 
+-- I am a little surprised that this lemma is not already in mathlib.  Maybe it should be.
 @[simp]
 lemma map_top {H : Subgroup G} : map H.subtype ⊤ = H := by
   ext
