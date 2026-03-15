@@ -22,7 +22,7 @@ After that, there will be hands-on sessions where the participants will work in 
 ### Schedule
 
 #### Monday
-* examples of informal vs formal definitions, with main focus on group theory
+* [examples of informal vs formal definitions](PreCFSG/IsSubnormal.lean), with main focus on group theory
 * presentation of group theory projects to work on during the week (you can also work on a project not among the ones that I suggest!)
 * working on projects + Q&A
 
@@ -31,7 +31,7 @@ After that, there will be hands-on sessions where the participants will work in 
 * working on projects + Q&A
 
 #### Wednesday
-* more group theory in Lean and design decisions
+* [more group theory](PreCFSG/Fitting.lean) in Lean and [design decisions](PreCFSG/NilpotentAdd.lean)
 * working on projects + Q&A
 
 #### Thursday
