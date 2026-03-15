@@ -39,6 +39,32 @@ These vary in length, some are open ended, some may be in reach within the week,
   this contradiction shows that `X` contains all minimal normal subgroups of `G`.
 
 * Minimal normal subgroups of finite groups are abelian or semisimple (Isaacs, Finite Group Theory, Lemma 9.6, page 275)
+
+  Lemma. Let `N` be a minimal normal subgroup of a finite group `G`.
+  Then either `N` is abelian, or it is semisimple.
+
+  Proof. Let `S` be a minimal normal subgroup of `N`.
+  If `S` is abelian, then `S ⊆ F(N)`, and thus `F(N)` is a nontrivial normal subgroup of `G` contained in `N`.
+  Since `N` is minimal normal in `G`, we have `F(N) = N`, and thus `N` is nilpotent.
+  But then `Z(N)` is a nontrivial normal subgroup of `G` contained in `N`, and thus `Z(N) = N`,
+  so `N` is abelian.
+
+  We may now assume that `S` is nonabelian, and we argue that `S` is simple.
+  If `K ◁ S`, then `K ◁ G`, and thus by Theorem 2.6*, the minimal normal subgroup `N` of `G` normalizes `K`, and hence `K ⊆ N`. But `K ⊆ S` and `S` is minimal normal in `N`. Thus either `K = 1` or `K = S`, which shows that `S` is simple, as required.
+
+  We may therefore assume that `S` is a nonabelian simple group.
+  Each conjugate of `S` in `G` is a nonabelian simple group that is normal in `N`, and
+  so the product `Σ` of these conjugates is semisimple. Also,
+
+  `1 < Σ ◁ G,   Σ ⊆ N`,
+
+  and by the minimality of `N`, it follows that `Σ = N`.
+  Thus `N` is semisimple, as claimed.
+
+  Theorem 2.6.
+  Let `S` be a subnormal subgroup of the finite group `G` and let `M` be a minimal normal subgroup of `G`.
+  Then `M` is contained in the normaliser of `S` in `G`.
+
 * The Fitting subgroup of a (binary/arbitrary) product is the product of the Fitting subgroups
 * Show that the inclusion `F(G)' ≤ F(G')` holds.
   Does it hold also for not necessarily finite groups?
