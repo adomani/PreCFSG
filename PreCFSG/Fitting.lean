@@ -251,17 +251,8 @@ lemma nilpotent_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsNilp
 /-- A nontrivial solvable group contains a nontrivial characteristic subgroup that is nilpotent. -/
 lemma characteristic_nilpotent [Nontrivial G] [IsSolvable G] :
     ∃ H : Subgroup G, IsNilpotent H ∧ Characteristic H ∧ Nontrivial H := by
-  classical
-  have : ∃ n, derivedSeries G n = ⊥ := (isSolvable_def G).mp ‹_›
-  let n : ℕ := Nat.find this
-  obtain h0 | hn := eq_or_ne n 0
-  · aesop
-  have fn := Nat.find_min (m := n - 1) this (Nat.sub_one_lt hn)
-  use derivedSeries G (n - 1)
-  refine ⟨?_, derivedSeries_characteristic _ _, (nontrivial_iff_ne_bot _).mpr fn⟩
-  apply nilpotent_of_comm_eq_bot
-  rw [← derivedSeries_succ]
-  grind
+  obtain ⟨n, hComm, h0⟩ := exists_isMulCommutative_nontrivial G
+  use derivedSeries G n, CommGroup.isNilpotent, derivedSeries_characteristic G n
 
 /-- The Fitting subgroup of a nontrivial solvable group is non-trivial. -/
 lemma nontrivial_of_isSolvable [Nontrivial G] [IsSolvable G] : Nontrivial F(G) := by
