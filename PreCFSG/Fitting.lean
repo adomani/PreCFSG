@@ -112,6 +112,10 @@ lemma Characteristic.iSup_ite_of_iff_map (p : Subgroup G → Prop) [DecidablePre
     Characteristic (⨆ H, if p H then H else ⊥) where
   fixed ψ := by
     rw [comap_equiv_eq_map_symm', MulEquiv.toMonoidHom_eq_coe, map_iSup, iSup_ite]
+    -- API idea: extract `let iso` into a definion: a group isomorphism induces an isomorphism
+    -- between the `Subgroup` lattices.
+    -- Even better, a group homomorphism `φ : G →* G'` induces a monotone map
+    -- `Subgroup G' →o Subgroup G` sending `H : Subgroup G'` to `comap φ H`.
     let iso : Subgroup G ≃ Subgroup G :=
       ⟨ map ψ.symm, map ψ,
         fun H ↦ by simp [← map_symm_eq_iff_map_eq],
