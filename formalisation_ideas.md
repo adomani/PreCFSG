@@ -84,8 +84,8 @@ These vary in length, some are open ended, some may be in reach within the week,
   1. If `n` is even and `z` is the involution in `⟨xy⟩` then `xz` is conjugate to `x` in `D` if and only if `n = 0 mod 4`.
 * The Brauer-Fowler theorem (Aschbacher, Finite Simple Groups, Theorem 45.5, page 244)
 
-  Let `H` be a finite group. Then there exists at most a finite number of finite simple groups `G` with an involution `t` such that
-`C_G(t) = H`.
+  Let `H` be a finite group.
+  Then there exists at most a finite number of finite simple groups `G` with an involution `t` such that `C_G(t) = H`.
 
 * The Thompson Odd-order formula (Aschbacher, Finite Simple Groups, Theorem 45.6, page 245)
 
