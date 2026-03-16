@@ -1,4 +1,4 @@
-## Workshop on Group theory and formalisation in Lean
+## Workshop on Group Theory and Formalisation in Lean
 
 Lectures: Damiano Testa (University of Warwick)
 
@@ -46,7 +46,7 @@ After that, there will be hands-on sessions where the participants will work in 
 
 ### Description
 
-This is an intensive 1-week workshop for students interested in joining a collaborative effort to formalize the classification of finite simple groups in Lean.
+This is an intensive 1-week workshop for students interested in joining a collaborative effort to formalise the classification of finite simple groups in Lean.
 
 The lectures will cover
 * mathematical ideas underlying the formalisation targets

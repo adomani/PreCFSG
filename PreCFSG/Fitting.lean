@@ -36,6 +36,7 @@ Here we prove some basic facts:
 variable {G} [Group G]
 namespace Subgroup
 
+-- I am a little surprised that this lemma is not already in mathlib.  Maybe it should be.
 @[simp]
 lemma map_top {H : Subgroup G} : map H.subtype ⊤ = H := by
   ext
@@ -52,7 +53,7 @@ lemma exists_isMulCommutative_nontrivial [Nontrivial G] [IsSolvable G] :
   have : ∃ n, derivedSeries G n = ⊥ := (isSolvable_def G).mp ‹_›
   let n : ℕ := Nat.find this
   obtain h0 | hn := eq_or_ne n 0
-  · aesop
+  · simp_all only [Nat.find_eq_zero, derivedSeries_zero, top_ne_bot, n]
   have fn := Nat.find_min (m := n - 1) this (Nat.sub_one_lt hn)
   use n -1
   refine ⟨?_, (nontrivial_iff_ne_bot _).mpr fn⟩
@@ -65,6 +66,27 @@ lemma exists_isMulCommutative_nontrivial [Nontrivial G] [IsSolvable G] :
     exact commutator_mem_commutator ha hb
   rw [this] at hcomm
   simpa only [MulMemClass.mk_mul_mk, Subtype.mk.injEq, ← commutatorElement_eq_one_iff_mul_comm]
+
+/-!
+# Formalisation idea
+
+The statement involves an existential. Often, this is a symptom of missing API.
+
+Indeed, from the *proof*, we extract that the stated `n` is *exactly* the predecessor of the
+smallest natural number `n` such that `derivedSeries G n = ⊥`.
+
+In the informal context, this number is sometimes called the `derived length` of the group `G`.
+
+It is possible that, for future usage, introducing the concept of `derived length` and using it
+extensively could be beneficial.
+
+Note that this would be a definition parallel to the `nilpotencyClass`, which *does* appear
+in `mathlib`.
+-/
+#check Group.nilpotencyClass
+/-!
+If AIs could automatically sync these notions that would be awesome!
+-/
 
 /-- The notation `Z(G)` stands for the center of the group `G`. -/
 scoped notation "Z(" G ")" => center G
@@ -91,6 +113,10 @@ lemma Characteristic.iSup_ite_of_iff_map (p : Subgroup G → Prop) [DecidablePre
     Characteristic (⨆ H, if p H then H else ⊥) where
   fixed ψ := by
     rw [comap_equiv_eq_map_symm', MulEquiv.toMonoidHom_eq_coe, map_iSup, iSup_ite]
+    -- API idea: extract `let iso` into a definion: a group isomorphism induces an isomorphism
+    -- between the `Subgroup` lattices.
+    -- Even better, a group homomorphism `φ : G →* G'` induces a monotone map
+    -- `Subgroup G' →o Subgroup G` sending `H : Subgroup G'` to `comap φ H`.
     let iso : Subgroup G ≃ Subgroup G :=
       ⟨ map ψ.symm, map ψ,
         fun H ↦ by simp [← map_symm_eq_iff_map_eq],
@@ -112,7 +138,9 @@ lemma Characteristic.sSup_ite_of_iff_map (P : Set (Subgroup G))
   (hp : ∀ φ : G ≃* G, ∀ H, H ∈ P ↔ (map φ H) ∈ P) :
     Characteristic (sSup P) := by
   classical
-  convert Characteristic.iSup_ite_of_iff_map (· ∈ P) hp
+  suffices sSup P = ⨆ H, if H ∈ P then H else ⊥ by
+    rw [this]
+    exact Characteristic.iSup_ite_of_iff_map _ hp
   simp [iSup_ite, sSup_eq_iSup]
 
 lemma lowerCentralSeries_two_eq_top_top_top :
@@ -130,9 +158,8 @@ lemma lowerCentralSeries_eq_two_of_commutator_le_centralizer {H : Subgroup G}
     lowerCentralSeries H 2 = ⊥ := by
   rw [lowerCentralSeries_two_eq_top_top_top, commutator_eq_bot_iff_le_centralizer]
   refine map_subtype_le_map_subtype.mp ?_
-  change map H.subtype (_root_.commutator ↥H) ≤ _
-  rw [map_subtype_commutator]
-  rw [@SetLike.le_def] at h ⊢
+  rw [← _root_.commutator_def, map_subtype_commutator]
+  rw [SetLike.le_def] at h ⊢
   simp only [coe_top, mem_map, subtype_apply, Subtype.exists, exists_and_right,
     exists_eq_right] at h ⊢
   intro x hx
@@ -190,13 +217,13 @@ theorem eq_bot_of_IsSimpleGroup_of_not_IsNilpotent [IsSimpleGroup G] (hC : ¬ Is
 theorem eq_bot_of_IsSimple_of_not_IsCyclic [IsSimpleGroup G] (hC : ¬ IsCyclic G) :
     F(G) = ⊥ := by
   apply eq_bot_of_IsSimpleGroup_of_not_IsNilpotent
-  solve_by_elim
+  solve_by_elim -- a "manual" proof is `exact fun h ↦ hC inferInstance`
 
 /-!
-In a solvable group, the centralizer of the Fitting subgroup is equal to the centre of the
+In a solvable group, the centraliser of the Fitting subgroup is equal to the centre of the
 Fitting subgroup.
 
-Ref: https://groupprops.subwiki.org/wiki/Solvable_implies_Fitting_subgroup_is_self-centralizing
+Ref: https://groupprops.subwiki.org/wiki/Solvable_implies_Fitting_subgroup_is_self-centralising
 -/
 
 lemma centralizer_inf_self_eq_center (H : Subgroup G) :
@@ -208,34 +235,18 @@ lemma centralizer_inf_self_eq_center (H : Subgroup G) :
       MulMemClass.mk_mul_mk, Subtype.mk.injEq, exists_and_left, exists_prop, exists_eq_right_right,
       mem_inf, mem_centralizer_iff, SetLike.mem_coe, implies_true, and_self]
 
-lemma isMulComm_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsNilpotent H := by
-  rw [nilpotent_iff_lowerCentralSeries]
-  use 1
-  rw [lowerCentralSeries_one, commutator_eq_bot_iff_center_eq_top]
-  rw [commutator_eq_bot_iff_le_centralizer, le_centralizer_iff_isMulCommutative] at hH
-  exact CommGroup.center_eq_top
+lemma isMulComm_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsMulCommutative H := by
+  exact isMulCommutative_iff_commutator_eq_bot.mpr hH
 
-lemma nilpotent_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsNilpotent H := by
-  rw [nilpotent_iff_lowerCentralSeries]
-  use 1
-  rw [lowerCentralSeries_one, commutator_eq_bot_iff_center_eq_top]
-  rw [commutator_eq_bot_iff_le_centralizer, le_centralizer_iff_isMulCommutative] at hH
-  exact CommGroup.center_eq_top
+lemma nilpotent_of_comm_eq_bot {H : Subgroup G} (hH : ⁅H, H⁆ = ⊥) : IsNilpotent H :=
+  have : IsMulCommutative H → IsNilpotent H := fun _ ↦ CommGroup.isNilpotent
+  this (isMulComm_of_comm_eq_bot hH)
 
 /-- A nontrivial solvable group contains a nontrivial characteristic subgroup that is nilpotent. -/
 lemma characteristic_nilpotent [Nontrivial G] [IsSolvable G] :
     ∃ H : Subgroup G, IsNilpotent H ∧ Characteristic H ∧ Nontrivial H := by
-  classical
-  have : ∃ n, derivedSeries G n = ⊥ := (isSolvable_def G).mp ‹_›
-  let n : ℕ := Nat.find this
-  obtain h0 | hn := eq_or_ne n 0
-  · aesop
-  have fn := Nat.find_min (m := n - 1) this (Nat.sub_one_lt hn)
-  use derivedSeries G (n - 1)
-  refine ⟨?_, derivedSeries_characteristic _ _, (nontrivial_iff_ne_bot _).mpr fn⟩
-  apply nilpotent_of_comm_eq_bot
-  rw [← derivedSeries_succ]
-  grind
+  obtain ⟨n, hComm, h0⟩ := exists_isMulCommutative_nontrivial G
+  use derivedSeries G n, CommGroup.isNilpotent, derivedSeries_characteristic G n
 
 /-- The Fitting subgroup of a nontrivial solvable group is non-trivial. -/
 lemma nontrivial_of_isSolvable [Nontrivial G] [IsSolvable G] : Nontrivial F(G) := by
@@ -268,6 +279,8 @@ lemma inf_centralizer_self_le_inf_centralizer :
       centralizer F(G) ⊓ centralizer (centralizer F(G) : Subgroup G) :=
   le_inf (fun z ↦ by aesop) (fun s ⟨hsF, hsC⟩ t ht ↦ (SemiconjBy.eq (ht s hsF)).symm)
 
+-- Refactoring opportunity: this lemma can certainly be reorganised using smaller steps and better
+-- structure.
 lemma centralizer_le_fitting [IsSolvable G] :
     centralizer F(G) ≤ F(G) := by
   -- The intersection of `F(G)` and its centraliser is normal in the centraliser.
@@ -291,10 +304,6 @@ lemma centralizer_le_fitting [IsSolvable G] :
     refine le_fitting_of_normal_of_isNilpotent ?_ ?_
     · exact ConjAct.normal_of_characteristic_of_normal
     · exact CommGroup.isNilpotent
-  have Bn_le_ZC : Bn ≤ centralizer C := by
-    trans F(G) ⊓ centralizer F(G)
-    · exact Bn_le_F_C
-    · exact inf_centralizer_self_le_inf_centralizer.trans (inf_le_of_right_le le_rfl)
   cases n with
   | zero =>
     simp only [derivedSeries_zero] at hBn_nilp
@@ -308,7 +317,9 @@ lemma centralizer_le_fitting [IsSolvable G] :
     have BB_le_ZC : ⁅B, B⁆ ≤ centralizer C := by
       unfold B
       rw [← map_commutator, ← derivedSeries_succ]
-      exact Bn_le_ZC
+      trans F(G) ⊓ centralizer F(G)
+      · exact Bn_le_F_C
+      · exact inf_centralizer_self_le_inf_centralizer.trans (inf_le_of_right_le le_rfl)
     have B_le_C : B ≤ C := map_subtype_le _
     have BB_le_ZB : ⁅B, B⁆ ≤ centralizer B := BB_le_ZC.trans (centralizer_le B_le_C)
     have B_nilp : IsNilpotent B := isNilpotent_of_commutator_le_centralizer BB_le_ZB
@@ -331,21 +342,10 @@ lemma centralizer_le_fitting [IsSolvable G] :
     · exact mem_centralizer_iff.mpr aC
     · exact mem_centralizer_iff.mpr bC
 
-lemma centralizer_le_center_fitting [IsSolvable G] :
-    centralizer F(G) ≤ (center F(G)).map F(G).subtype := by
-  have : centralizer ↑F(G) ⊓ F(G) = centralizer ↑F(G) := by
-    simp [centralizer_le_fitting (G := G)]
-  rw [← this]
-  exact (centralizer_inf_self_eq_center _).le
-
 theorem centralizer_eq_center_of_isSolvable [IsSolvable G] :
     centralizer F(G).carrier = Z(F(G)).map F(G).subtype := by
-  refine le_antisymm centralizer_le_center_fitting ?_
-  intro g hg
-  rw [mem_map] at hg
-  obtain ⟨⟨z, hz⟩, hz, rfl⟩ := hg
-  rw [mem_centralizer_iff]
-  rw [mem_center_iff] at hz
+  simp [← centralizer_inf_self_eq_center]
+  have := centralizer_le_fitting (G := G)
   aesop
 
 end Subgroup.Fitting
