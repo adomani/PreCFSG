@@ -14,6 +14,8 @@ Each day, I will give a 30-45 minute presentation on group theory, formalisation
 
 After that, there will be hands-on sessions where the participants will work in small groups on various formalisation targets.
 
+Breakout rooms available for group work: 103, 104, 107, 109.
+
 #### Mon-Fri 5-7pm
 
 * 2 hours each day -- 30-45 minutes of lecture, followed by group work
