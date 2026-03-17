@@ -72,3 +72,11 @@ An efficient method for humans to improve their formalisation skills is being in
 AI-written code can similarly be reviewed by other AIs and the two could iterate on reviewing each others' code until it hopefully converges to a final state.
 
 The reviewing process could also check for alignments between the informal notions and their formalised counterparts. This could help catch misformalisations, as well.
+
+## Generalisation and adjustments
+
+After a result is formalised, humans normally look back at the process critically, looking for potential generalisation or rephrasing of lemmas. This fosters the creation of a more usable ecosystem.
+
+It might also be a place where previously duplicated code can now be seen as specialisation of a more general result, thus effectively *reducing* the code-base, while retaining the same expressivity.
+
+To me, this is one of the most important aspects of *progress*: achieving more simply, something that was previously hard.
