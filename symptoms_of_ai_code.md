@@ -54,3 +54,13 @@ More definitions means writing more API for each definition, which in turn bloat
 AI-generated proofs normally introduce multiple `def`initions for the most trivial of concepts.
 
 I think that it is worthwhile to seriously consider whether so many definitions are useful or harmful -- my inclination is to think that they are harmful.
+
+## Writing and following a blueprint
+
+Human formalisation projects that have a blue-print are orders of magnitude more successful and efficient than projects that do not.
+
+Part of the reason is that the formalisation work can be distributed more efficiently and each step requires less specialised knowledge.
+
+However, another very important aspect is that a blueprint is an intermediate representation between the "fully informal" proof that humans consume and the very detailed and careful final formalised artifact.
+
+These intermediate "informalisation" steps should probably be studied more in detail and AI agents might even benefit from studying the edit-history of blueprints, to see what sort of adjustments are typical and possibly reproducible.
