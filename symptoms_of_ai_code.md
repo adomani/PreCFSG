@@ -1,4 +1,6 @@
-# Quantifying Good Formal Proofs
+# Quality, Elegance, Discipline
+
+## Guidelines for AI‑Generated Formal Proofs
 
 This file collects what I identify as symptoms of AI code.
 What I point out here need not be undesirable code, but could be.
