@@ -44,3 +44,13 @@ After getting familiar with formalisation, it becomes apparent that what seems l
 AIs tend to take this to the extreme and produce individual proofs that are several hundreds or even thousands of lines long.
 
 Penalising proofs proportionally to their length may have the effect of splitting out (useful? see the "Walls of `have`" section) lemmas, improving performance, reducing the overall complexity by focusing on simpler results.
+
+## Reduce the number of `def`initions
+
+While definitions are not intrinsically a symptom of bad code, many concepts do not actually need a separate definition.
+
+More definitions means writing more API for each definition, which in turn bloats the code-base for potentially little benefit.
+
+AI-generated proofs normally introduce multiple `def`initions for the most trivial of concepts.
+
+I think that it is worthwhile to seriously consider whether so many definitions are useful or harmful -- my inclination is to think that they are harmful.
