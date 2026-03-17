@@ -64,3 +64,9 @@ Part of the reason is that the formalisation work can be distributed more effici
 However, another very important aspect is that a blueprint is an intermediate representation between the "fully informal" proof that humans consume and the very detailed and careful final formalised artifact.
 
 These intermediate "informalisation" steps should probably be studied more in detail and AI agents might even benefit from studying the edit-history of blueprints, to see what sort of adjustments are typical and possibly reproducible.
+
+## Review
+
+An efficient method for humans to improve their formalisation skills is being involved in the review process, both on the receiving end and on the reviewing end.
+
+AI-written code can similarly be reviewed by other AIs and the two could iterate on reviewing each others' code until it hopefully converges to a final state.
