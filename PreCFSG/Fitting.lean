@@ -103,6 +103,10 @@ lemma normal_map {G'} [Group G'] (H : Subgroup G) (φ : G ≃* G') :
     map_equiv_eq_comap_symm]
   exact normal_comap (φ : G →* G')
 
+def com {G'} [Group G'] (φ : G →* G') : Subgroup G' →o Subgroup G where
+  toFun := comap φ
+  monotone' _ _ := comap_mono
+
 /--
 If `p : Subgroup G → Prop` is a property of subgroups of a group `G` that holds on a subgroup `H`
 if and only if it holds on the image of `H` under any automorphism of `G`, then the subgroup
