@@ -89,6 +89,6 @@ More code can do more stuff (often).
 
 However, real progress is when less code can do more stuff!
 
-Investigate periodically potential refactors that would not decrease the expressivity of the code-base, but would decrease its complexity, size or duplication should be a priority.
+Investigate periodically potential refactors that would not decrease the expressivity of the code-base, but would decrease its complexity, size or duplication.
 
 No one gains from an incontrollable growth of code.
