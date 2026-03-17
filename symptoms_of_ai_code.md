@@ -91,4 +91,4 @@ However, real progress is when less code can do more stuff!
 
 Investigate periodically potential refactors that would not decrease the expressivity of the code-base, but would decrease its complexity, size or duplication.
 
-No one gains from an incontrollable growth of code.
+No one gains from uncontrollable code growth.
