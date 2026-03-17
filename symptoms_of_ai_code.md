@@ -73,7 +73,7 @@ AI-written code can similarly be reviewed by other AIs and the two could iterate
 
 The reviewing process could also check for alignments between the informal notions and their formalised counterparts. This could help catch misformalisations, as well.
 
-## Generalisation and adjustments
+## Generalisations and adjustments
 
 After a result is formalised, humans normally look back at the process critically, looking for potential generalisation or rephrasing of lemmas. This fosters the creation of a more usable ecosystem.
 
