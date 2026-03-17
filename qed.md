@@ -7,6 +7,8 @@ What I point out here need not be undesirable code, but could be.
 
 If carefully curated human code is the final goal of what AIs should write, then at least some of the items below need to be addressed!
 
+I tried to focus on easily enforceable points, giving, where possible, a clear path to how to measure deviations.
+
 ## Walls of `have` and forward reasoning
 
 * Disincentivize `have`
