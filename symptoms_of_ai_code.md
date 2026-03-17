@@ -36,3 +36,11 @@ AI-generated proofs, however, often like interlacing tactic-mode proofs and term
 Disincentivising more than 1 tactic in each node of a sequence of tactics (a `tacticSeq`) seems more aligned with human code.
 
 The result is often more readable and more maintainable code.
+
+## Reduce lengths of proofs
+
+After getting familiar with formalisation, it becomes apparent that what seems like a single reasoning step, really hides multiple more atomic connections.
+
+AIs tend to take this to the extreme and produce individual proofs that are several hundreds or even thousands of lines long.
+
+Penalising proofs proportionally to their length may have the effect of splitting out (useful? see the "Walls of `have`" section) lemmas, improving performance, reducing the overall complexity by focusing on simpler results.
