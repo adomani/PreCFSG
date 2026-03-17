@@ -70,3 +70,5 @@ These intermediate "informalisation" steps should probably be studied more in de
 An efficient method for humans to improve their formalisation skills is being involved in the review process, both on the receiving end and on the reviewing end.
 
 AI-written code can similarly be reviewed by other AIs and the two could iterate on reviewing each others' code until it hopefully converges to a final state.
+
+The reviewing process could also check for alignments between the informal notions and their formalised counterparts. This could help catch misformalisations, as well.
