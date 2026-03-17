@@ -80,3 +80,15 @@ After a result is formalised, humans normally look back at the process criticall
 It might also be a place where previously duplicated code can now be seen as specialisation of a more general result, thus effectively *reducing* the code-base, while retaining the same expressivity.
 
 To me, this is one of the most important aspects of *progress*: achieving more simply, something that was previously hard.
+
+## Revisiting old code
+
+This is a natural follow up to the step on generalisations. Once new code is streamlined, it is a good momento to look back at past code and see if it can benefit from the new additions.
+
+More code can do more stuff (often).
+
+However, real progress is when less code can do more stuff!
+
+Investigate periodically potential refactors that would not decrease the expressivity of the code-base, but would decrease its complexity, size or duplication should be a priority.
+
+No one gains from an incontrollable growth of code.
