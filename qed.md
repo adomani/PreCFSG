@@ -17,7 +17,7 @@ I tried to focus on easily enforceable points, giving, where possible, a clear p
 The rationale is that `have`s bloat the context for little gain.
 Tactics like `refine` and `apply` have the opposite effect:
 * they usually create more subgoals,
-* the subgoals are good candidates for API lemmas (possibly with a filter that they should be separate goals, only if they require fewer/different assumptions to be proved),
+* the subgoals are good candidates for API lemmas (possibly with a filter that they should be promoted to separate goals, only if they can be proved with fewer or weaker assumptions),
 * create a tree-like structure for the proof, which allows for "recursive solving",
 * tactic automation has more chances of helping with the side-goals.
 
