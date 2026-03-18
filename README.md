@@ -21,9 +21,9 @@ Breakout rooms available for group work: 103, 104, 107, 109.
 * 2 hours each day -- 30-45 minutes of lecture, followed by group work
 * 1 hour lecture on "Overview of the Classification of Finite Simple Groups"
 
-#### Suggestions for improvements of AI-generated code
+### Suggestions for improvements of AI-generated code
 
-I wrote a [short summary](qed) of the most common giveaways of Lean code written by AIs.
+I wrote a [short summary](qed.md) of the most common giveaways of Lean code written by AIs.
 
 I tried to focus on aspects that can, potentially, be programmatically discouraged by appropriately training proving models.
 
